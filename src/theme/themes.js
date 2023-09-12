@@ -2,12 +2,16 @@ import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
   * {
-  font-family: 'Times New Roman', Times, serif;
+    font-family: 'Roboto', sans-serif;
   }
   body {
     background-color: ${(props) => props.theme.body};
     color: ${(props) => props.theme.text};
     transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
   }
 `;
 

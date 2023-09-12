@@ -1,12 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+
 import App from "./App.jsx";
 import { ThemeToggleProvider } from "./components/ThemeProvider.jsx";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { ErrorPage } from "./components/error-page.jsx";
 import { Index } from "./components/index.jsx";
-import "./index.css";
 import { FormNewVideo } from "./components/form-new-video.jsx";
+
+import "./index.css";
 
 const router = createBrowserRouter([
   {

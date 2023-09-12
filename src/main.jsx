@@ -9,14 +9,14 @@ import { Index } from "./components/index.jsx";
 import { FormNewVideo } from "./components/form-new-video.jsx";
 
 import "./index.css";
+import { PageRoutes } from "./pages/page-routes.jsx";
+import { LanguageId } from "./components/languages.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     errorElement: <ErrorPage />,
-    // loader: rootLoader,
-    // action: createAction,
     children: [
       {
         errorElement: <ErrorPage />,
@@ -28,8 +28,14 @@ const router = createBrowserRouter([
           {
             path: "newvideo",
             element: <FormNewVideo />,
-            // loader: contactLoader,
-            // action: contactAction,
+          },
+          {
+            path: "pages/:pageId",
+            element: <PageRoutes />,
+          },
+          {
+            path: "language/:languageId",
+            element: <LanguageId />,
           },
         ],
       },

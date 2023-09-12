@@ -8,18 +8,16 @@ import {
   Menu,
   Container,
   Avatar,
-  Button,
   Tooltip,
   MenuItem,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import AdbIcon from "@mui/icons-material/Adb";
 import VideoCallIcon from "@mui/icons-material/VideoCall";
-
-import { nameProject } from "../utils/names";
 import { Link } from "react-router-dom";
 
-const pages = ["Lenguajes", "Tendencias"];
+import { nameProject } from "../utils/names";
+
+const pages = ["rutas", "tendencias"];
 const settings = ["Agregar nuevo video"];
 
 function ResponsiveAppBar() {
@@ -45,28 +43,29 @@ function ResponsiveAppBar() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          {/* <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 2 }} /> */}
           <IconButton sx={{ display: { xs: "none", md: "flex" }, mr: 2 }}>
             <Avatar alt="logo" src="/icon.svg" />
           </IconButton>
-          <Typography
-            variant="h6"
-            noWrap
-            component="span"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontWeight: 700,
-              color: "inherit",
-            }}
-          >
-            <Link to="/">{nameProject}</Link>
-          </Typography>
+          <Link to="/">
+            <Typography
+              variant="h5"
+              noWrap
+              component="span"
+              sx={{
+                mr: 2,
+                display: { xs: "none", md: "flex" },
+                fontWeight: 700,
+                color: "inherit",
+              }}
+            >
+              {nameProject}
+            </Typography>
+          </Link>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
-              aria-label="account of current user"
+              aria-label="visit more pages"
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
@@ -119,19 +118,20 @@ function ResponsiveAppBar() {
           >
             {nameProject}
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box
+            sx={{ flexGrow: 1, display: { xs: "none", md: "flex", gap: 20 } }}
+          >
             {pages.map((page) => (
-              <Button
+              <Link
                 key={page}
-                onClick={handleCloseNavMenu}
-                sx={{
-                  my: 2,
+                to={`pages/${page}`}
+                style={{
                   color: "white",
                   display: "block",
                 }}
               >
                 {page}
-              </Button>
+              </Link>
             ))}
           </Box>
 
@@ -140,13 +140,12 @@ function ResponsiveAppBar() {
               <IconButton
                 onClick={handleOpenUserMenu}
                 sx={{ p: 0 }}
-                size="large"
-                aria-label="account of current user"
+                aria-label="add more video"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 color="inherit"
               >
-                <VideoCallIcon />
+                <VideoCallIcon sx={{ fontSize: "3rem" }} />
               </IconButton>
             </Tooltip>
             <Menu

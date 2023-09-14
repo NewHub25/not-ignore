@@ -32,10 +32,13 @@ export const warning = "orange";
 export const darkTheme = {
   body: neutral_1,
   text: neutral_3,
-  principal: principal_1,
+  principal: principal_2,
+  name: "dark",
 };
 
 export const lightTheme = {
-  body: "#ffffff",
-  text: "#333333",
+  body: neutral_3,
+  text: neutral_1,
+  principal: principal_1,
+  name: "light",
 };

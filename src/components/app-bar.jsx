@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   AppBar,
   Box,
@@ -7,20 +8,21 @@ import {
   Typography,
   Menu,
   Container,
-  Avatar,
   Tooltip,
   MenuItem,
 } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
-import VideoCallIcon from "@mui/icons-material/VideoCall";
-import { Link } from "react-router-dom";
+import { Avatar } from "@mui/joy";
+import { SettingsSuggest, Menu as MenuIcon } from "@mui/icons-material";
+import { ThemeContext } from "styled-components";
 
 import { nameProject } from "../utils/names";
+import ExampleThumbChild from "./switch";
 
 const pages = ["rutas", "tendencias"];
-const settings = ["Agregar nuevo video"];
+const moreActions = ["Agregar nuevo video"];
 
 function ResponsiveAppBar() {
+  const toggleTheme = useContext(ThemeContext);
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -40,28 +42,39 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar
+      position="static"
+      sx={{
+        backgroundColor: "transparent",
+        boxShadow: `0px 1px 5px ${toggleTheme.text}`,
+        color: toggleTheme.principal,
+      }}
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <IconButton sx={{ display: { xs: "none", md: "flex" }, mr: 2 }}>
-            <Avatar alt="logo" src="/icon.svg" />
+            <Avatar
+              alt="logo"
+              src="/icon.svg"
+              size="lg"
+              sx={{ backgroundColor: "transparent" }}
+            />
           </IconButton>
           <Link to="/">
             <Typography
               variant="h5"
               noWrap
-              component="span"
+              component="h1"
               sx={{
-                mr: 2,
+                mr: 10,
                 display: { xs: "none", md: "flex" },
                 fontWeight: 700,
-                color: "inherit",
+                color: toggleTheme.principal,
               }}
             >
               {nameProject}
             </Typography>
           </Link>
-
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -93,50 +106,74 @@ function ResponsiveAppBar() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Link to={`pages/${page}`}>
+                    <Typography
+                      component="span"
+                      textAlign="center"
+                      sx={{ fontSize: "1.2rem", textTransform: "capitalize" }}
+                    >
+                      {page}
+                    </Typography>
+                  </Link>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
           <IconButton sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}>
-            <Avatar alt="logo" src="/icon.svg" />
+            <Avatar
+              alt="logo"
+              src="/icon.svg"
+              size="sm"
+              sx={{ backgroundColor: "transparent" }}
+            />
           </IconButton>
           <Typography
-            variant="h5"
+            variant="h6"
             noWrap
-            component="a"
-            href="/"
+            component="h1"
             sx={{
-              mr: 2,
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
               fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
               textDecoration: "none",
             }}
           >
-            {nameProject}
+            <Link to="/">{nameProject}</Link>
           </Typography>
           <Box
-            sx={{ flexGrow: 1, display: { xs: "none", md: "flex", gap: 20 } }}
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+              fontSize: "1.2rem",
+              gap: "5rem",
+              textTransform: "capitalize",
+              color: toggleTheme.text,
+            }}
           >
             {pages.map((page) => (
               <Link
                 key={page}
                 to={`pages/${page}`}
                 style={{
-                  color: "white",
                   display: "block",
+                  fontWeight: 700,
                 }}
               >
                 {page}
               </Link>
             ))}
           </Box>
-
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
+            <IconButton
+              sx={{ mr: 3, p: 0, display: { xs: "none", md: "inline-block" } }}
+              aria-label="switch light"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              color="inherit"
+            >
+              <ExampleThumbChild />
+            </IconButton>
+            <Tooltip title="Más acciones">
               <IconButton
                 onClick={handleOpenUserMenu}
                 sx={{ p: 0 }}
@@ -145,7 +182,18 @@ function ResponsiveAppBar() {
                 aria-haspopup="true"
                 color="inherit"
               >
-                <VideoCallIcon sx={{ fontSize: "3rem" }} />
+                <SettingsSuggest
+                  sx={{
+                    fontSize: "2.5rem",
+                    display: { xs: "block", md: "none" },
+                  }}
+                />
+                <SettingsSuggest
+                  sx={{
+                    fontSize: "3rem",
+                    display: { xs: "none", md: "block" },
+                  }}
+                />
               </IconButton>
             </Tooltip>
             <Menu
@@ -164,11 +212,27 @@ function ResponsiveAppBar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+              {moreActions.map((moreAction) => (
+                <MenuItem key={moreAction} onClick={handleCloseUserMenu}>
+                  <Link to="newvideo">
+                    <Typography textAlign="center" component="span">
+                      {moreAction}
+                    </Typography>
+                  </Link>
                 </MenuItem>
               ))}
+              <IconButton
+                sx={{
+                  paddingLeft: 7,
+                  display: { xs: "block", md: "none" },
+                }}
+                aria-label="add more video"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                color="inherit"
+              >
+                <ExampleThumbChild />
+              </IconButton>
             </Menu>
           </Box>
         </Toolbar>

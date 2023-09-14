@@ -4,9 +4,7 @@ import ResponsiveAppBar from "./components/app-bar";
 function App() {
   return (
     <>
-      <h1>
-        <ResponsiveAppBar />
-      </h1>
+      <ResponsiveAppBar />
       <Outlet />
     </>
   );

@@ -21,11 +21,10 @@ export const ThemeToggleProvider = ({ children }) => {
     }
   }, []);
 
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
+  const toggleTheme = (event) => {
+    const newTheme = event.target.checked ? "dark" : "light";
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
-    console.log("Set color scheme");
   };
 
   return (

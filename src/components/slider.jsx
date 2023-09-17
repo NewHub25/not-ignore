@@ -5,6 +5,8 @@ import Card from "@mui/joy/Card";
 import Button from "@mui/joy/Button";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { ThemeContext } from "styled-components";
+import { useContext } from "react";
 
 const data = [
   {
@@ -29,74 +31,77 @@ const data = [
   },
 ];
 
-export default function CarouselRatio() {
+export default function Carousel() {
   const moveToleft = (isLeft) => {
-    const cardSmLength = document
+    const cardImgWidth = document
       .querySelector(".MuiCard-sizeSm")
       .getBoundingClientRect().width;
     document
       .getElementById("box")
-      .scrollBy((isLeft ? -1 : 1) * cardSmLength, 0);
+      .scrollBy((isLeft ? -1 : 1) * cardImgWidth, 0);
   };
 
   return (
-    <>
-      <Card
+    <Card
+      sx={{
+        // width: "min(900px, 90%)",
+        width: "90%",
+        minHeight: 90,
+        position: "relative",
+        border: "none",
+        background: "transparent",
+        outline: "1px solid black",
+        mx: "auto",
+      }}
+    >
+      <Box
+        id="box"
         sx={{
-          width: "min(500px, 90%)",
-          minHeight: 90,
-          position: "relative",
-          border: "none",
-          background: "transparent",
+          display: "flex",
+          gap: 1,
+          py: 1,
+          overflow: "auto",
+          width: "100%",
+          scrollSnapType: "x mandatory",
+          scrollBehavior: "smooth",
+          "& > *": {
+            scrollSnapAlign: "start",
+          },
+          "::-webkit-scrollbar": { display: "none" },
         }}
       >
-        <Box
-          id="box"
-          sx={{
-            display: "flex",
-            gap: 1,
-            py: 1,
-            overflow: "auto",
-            width: "100%",
-            scrollSnapType: "x mandatory",
-            scrollBehavior: "smooth",
-            "& > *": {
-              scrollSnapAlign: "start",
-            },
-            "::-webkit-scrollbar": { display: "none" },
-          }}
-        >
-          {data.map((item) => (
-            <Card
-              orientation="horizontal"
-              size="sm"
-              key={item.title}
-              variant="outlined"
-            >
-              <AspectRatio ratio="1" sx={{ minWidth: 200 }}>
-                <img
-                  src={`${item.src}?h=120&fit=crop&auto=format`}
-                  srcSet={`${item.src}?h=120&fit=crop&auto=format&dpr=2 2x`}
-                  alt={item.title}
-                />
-              </AspectRatio>
-              <Box sx={{ whiteSpace: "nowrap", mx: 1 }}>
-                <Typography level="title-md">{item.title}</Typography>
-                <Typography level="body-sm">{item.description}</Typography>
-              </Box>
-            </Card>
-          ))}
-        </Box>
-        <ButtonUser dir="left" handleClick={() => moveToleft(true)} />
-        <ButtonUser dir="right" handleClick={() => moveToleft(false)} />
-      </Card>
-    </>
+        {data.map((item) => (
+          <Card
+            orientation="horizontal"
+            size="sm"
+            key={item.title}
+            variant="outlined"
+          >
+            <AspectRatio ratio="1" sx={{ minWidth: 200 }}>
+              <img
+                src={`${item.src}?h=120&fit=crop&auto=format`}
+                srcSet={`${item.src}?h=120&fit=crop&auto=format&dpr=2 2x`}
+                alt={item.title}
+              />
+            </AspectRatio>
+            <Box sx={{ whiteSpace: "nowrap", mx: 1 }}>
+              <Typography level="title-md">{item.title}</Typography>
+              <Typography level="body-sm">{item.description}</Typography>
+            </Box>
+          </Card>
+        ))}
+      </Box>
+      <ButtonUser dir="left" handleClick={() => moveToleft(true)} />
+      <ButtonUser dir="right" handleClick={() => moveToleft(false)} />
+    </Card>
   );
 }
 
 const ButtonUser = ({ dir, handleClick }) => {
+  const toggleTheme = useContext(ThemeContext);
   const dirVar = dir === "left";
   if (!dirVar && dir !== "right") throw Error("Error declare dir");
+
   return (
     <Button
       variant="outlined"
@@ -108,6 +113,9 @@ const ButtonUser = ({ dir, handleClick }) => {
         borderRadius: "50%",
         aspectRatio: "1/1",
         width: "3rem",
+        "&:hover": {
+          backgroundColor: toggleTheme.body,
+        },
       }}
       onClick={handleClick}
     >

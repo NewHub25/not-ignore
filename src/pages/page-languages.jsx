@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 
-export const PageLenguages = () => {
+export const PageCategories = () => {
   return (
     <main>
       <section>
         <h2>Lenguajes</h2>
         <ul>
-          <Link to='/language/javascript'>Javascript</Link>
+          <Link to="/tech/javascript">Javascript</Link>
           <Link>React</Link>
           <Link>Python</Link>
         </ul>

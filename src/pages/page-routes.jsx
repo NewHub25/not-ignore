@@ -1,13 +1,13 @@
 import { useParams } from "react-router-dom";
-import { PageLenguages } from "./page-languages";
+import { PageCategories } from "./page-languages";
 import { PageTrend } from "./page-trend";
 
 export const PageRoutes = () => {
   const { pageId } = useParams();
 
   const pages = {
-    rutas: <PageLenguages />,
-    tendencias: <PageTrend />,
+    category: <PageCategories />,
+    trend: <PageTrend />,
   };
   return pages[pageId];
 };

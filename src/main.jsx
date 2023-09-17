@@ -10,7 +10,7 @@ import { FormNewVideo } from "./components/form-new-video.jsx";
 
 import "./index.css";
 import { PageRoutes } from "./pages/page-routes.jsx";
-import { LanguageId } from "./components/languages.jsx";
+import { Technologies } from "./components/languages.jsx";
 
 const router = createBrowserRouter([
   {
@@ -34,8 +34,8 @@ const router = createBrowserRouter([
             element: <PageRoutes />,
           },
           {
-            path: "language/:languageId",
-            element: <LanguageId />,
+            path: "tech/:techId",
+            element: <Technologies />,
           },
         ],
       },

@@ -6,6 +6,11 @@ export const GlobalStyles = createGlobalStyle`
   }
   body {
     background-color: ${(props) => props.theme.body};
+    background-image: url(${(props) => props.theme.backgroundImage});
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     color: ${(props) => props.theme.text};
     transition: background-color 0.3s ease, color 0.3s ease;
   }
@@ -34,6 +39,7 @@ export const darkTheme = {
   text: neutral_3,
   principal: principal_2,
   name: "dark",
+  backgroundImage: "subtle-prism-black.svg",
 };
 
 export const lightTheme = {
@@ -41,4 +47,5 @@ export const lightTheme = {
   text: neutral_1,
   principal: principal_1,
   name: "light",
+  backgroundImage: "subtle-prism-light.svg",
 };

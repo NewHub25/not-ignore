@@ -18,7 +18,10 @@ import { ThemeContext } from "styled-components";
 import { nameProject } from "../utils/names";
 import ExampleThumbChild from "./switch";
 
-const pages = ["rutas", "tendencias"];
+const pages = [
+  { id: "category", name: "categorías" },
+  { id: "trend", name: "tendencias" },
+];
 const moreActions = ["Agregar nuevo video"];
 
 function ResponsiveAppBar() {
@@ -104,15 +107,15 @@ function ResponsiveAppBar() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Link to={`pages/${page}`}>
+              {pages.map(({id, name}) => (
+                <MenuItem key={id} onClick={handleCloseNavMenu}>
+                  <Link to={`pages/${id}`}>
                     <Typography
                       component="span"
                       textAlign="center"
                       sx={{ fontSize: "1.2rem", textTransform: "capitalize" }}
                     >
-                      {page}
+                      {name}
                     </Typography>
                   </Link>
                 </MenuItem>
@@ -150,16 +153,16 @@ function ResponsiveAppBar() {
               color: toggleTheme.text,
             }}
           >
-            {pages.map((page) => (
+            {pages.map(({id, name}) => (
               <Link
-                key={page}
-                to={`pages/${page}`}
+                key={id}
+                to={`pages/${id}`}
                 style={{
                   display: "block",
                   fontWeight: 700,
                 }}
               >
-                {page}
+                {name}
               </Link>
             ))}
           </Box>

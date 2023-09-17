@@ -11,8 +11,13 @@ export const Index = () => {
         <p>¡Este es un ejemplo de una aplicación con temas!</p>
         <Link to="newvideo">Ver el nuevo video</Link>
       </div>
-      <Carousel title content  />
-      <VideoSmall />
+      <Carousel title content />
+      <VideoSmall
+        title="Tutorial práctico: React y TypeScript paso a paso, crea tu primera
+          aplicación"
+        videoUrl="https://www.youtube.com/watch?v=4lAYfsq-2TE"
+        technologies={["React", "Typescript"]}
+      />
     </>
   );
 };

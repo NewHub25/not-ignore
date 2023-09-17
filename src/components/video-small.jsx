@@ -2,19 +2,24 @@ import Card from "@mui/joy/Card";
 import CardCover from "@mui/joy/CardCover";
 import CardContent from "@mui/joy/CardContent";
 import Typography from "@mui/joy/Typography";
-import VisibilityIcon from "@mui/icons-material/Visibility";
+// import VisibilityIcon from "@mui/icons-material/Visibility";
+import ViewInArIcon from "@mui/icons-material/ViewInAr";
+import { Link } from "react-router-dom";
+import digVideoId from "../logic/dig-video-id";
 
-export default function VideoSmall({ videoUrl, imgUrl, title, routes }) {
-  //   const [isHover, setIsHover] = useState(true);
-
+export default function VideoSmall({ videoUrl, title, technologies }) {
+  const { queryDomain, idYouTube } = digVideoId(videoUrl);
+  console.log(queryDomain);
   return (
     <Card sx={{ minHeight: "200px", width: 300 }}>
       <CardCover>
-        <img
-          src="https://i3.ytimg.com/vi/4lAYfsq-2TE/maxresdefault.jpg"
-          loading="lazy"
-          alt=""
-        />
+        <Link to={videoUrl}>
+          <img
+            src={`https://i3.ytimg.com/vi/${idYouTube}/maxresdefault.jpg`}
+            loading="lazy"
+            alt=""
+          />
+        </Link>
       </CardCover>
       <CardCover
         sx={{
@@ -31,15 +36,14 @@ export default function VideoSmall({ videoUrl, imgUrl, title, routes }) {
         }}
       >
         <Typography level="title-lg" textColor="#fff">
-          Tutorial práctico: React y TypeScript paso a paso, crea tu primera
-          aplicación
+          {title}
         </Typography>
         <Typography
-          startDecorator={<VisibilityIcon color="primary" />}
+          startDecorator={<ViewInArIcon color="primary" />}
           textColor="neutral.300"
           align="right"
         >
-          React y TypeScript
+          {`[${technologies.join(",")}]`}
         </Typography>
       </CardContent>
     </Card>

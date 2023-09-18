@@ -1,9 +1,7 @@
-const sessionKey = "api_key";
-
 export const saveSession = function (data) {
-  sessionStorage.setItem(sessionKey, JSON.stringify(data));
+  sessionStorage.setItem(import.meta.env.VITE_KEY_STORAGE, JSON.stringify(data));
 };
 
 export const getSession = function () {
-  return sessionStorage.getItem(sessionKey);
+  return JSON.parse(sessionStorage.getItem(import.meta.env.VITE_KEY_STORAGE));
 };

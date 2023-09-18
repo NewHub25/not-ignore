@@ -1,7 +1,10 @@
+import CustomizedSteppers from "./FormVideo";
+
 export const FormNewVideo = () => {
   return (
     <>
-      <h1>Nuevo video en proceso</h1>
+      <CustomizedSteppers />
+      <img src="/sources.png" width={300} height={200} />
     </>
   );
 };

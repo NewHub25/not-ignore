@@ -19,7 +19,7 @@ import { nameProject } from "../utils/names";
 import ExampleThumbChild from "./switch";
 
 const pages = [
-  { id: "category", name: "categorías" },
+  { id: "categories", name: "categorías" },
   { id: "trend", name: "tendencias" },
 ];
 const moreActions = ["Agregar nuevo video"];
@@ -107,7 +107,7 @@ function ResponsiveAppBar() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map(({id, name}) => (
+              {pages.map(({ id, name }) => (
                 <MenuItem key={id} onClick={handleCloseNavMenu}>
                   <Link to={`pages/${id}`}>
                     <Typography
@@ -139,6 +139,7 @@ function ResponsiveAppBar() {
               flexGrow: 1,
               fontWeight: 700,
               textDecoration: "none",
+              color: toggleTheme.text,
             }}
           >
             <Link to="/">{nameProject}</Link>
@@ -153,7 +154,7 @@ function ResponsiveAppBar() {
               color: toggleTheme.text,
             }}
           >
-            {pages.map(({id, name}) => (
+            {pages.map(({ id, name }) => (
               <Link
                 key={id}
                 to={`pages/${id}`}

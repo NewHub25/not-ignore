@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import Carousel from "./slider";
-import VideoSmall from "./video-small";
+import Carousel from "./carousel";
+import CATEGORIES from "./../data/categories.json";
 
 export const Index = () => {
   return (
@@ -11,13 +11,9 @@ export const Index = () => {
         <p>¡Este es un ejemplo de una aplicación con temas!</p>
         <Link to="newvideo">Ver el nuevo video</Link>
       </div>
-      <Carousel title content />
-      <VideoSmall
-        title="Tutorial práctico: React y TypeScript paso a paso, crea tu primera
-          aplicación"
-        videoUrl="https://www.youtube.com/watch?v=4lAYfsq-2TE"
-        technologies={["React", "Typescript"]}
-      />
+      {CATEGORIES.map(({ content, layer, title }) => (
+        <Carousel key={title} content={content} layer={layer} title={title} />
+      ))}
     </>
   );
 };

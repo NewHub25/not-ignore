@@ -1,0 +1,109 @@
+[
+  {
+    "content": [
+      {
+        "author": "Midulive",
+        "description": "Una función de callback es una función que se pasa a otra función como un argumento, que luego se invoca dentro de la función externa para completar algún tipo de rutina o acción.",
+        "keywords": [
+          "JavaScript"
+        ],
+        "title": " ¿Qué es un callback en JavaScript? Tutorial desde cero",
+        "url": "https://www.youtube.com/watch?v=kjCH7vvISsE"
+      },
+      {
+        "author": "Soy Dalto",
+        "description": "Este es el curso de javascript desde cero a experto que vas a terminar.",
+        "keywords": [
+          "JavaScript"
+        ],
+        "title": "Curso de JAVASCRIPT desde CERO (Completo) - Nivel JUNIOR",
+        "url": "https://www.youtube.com/watch?v=z95mZVUcJ-E"
+      }
+    ],
+    "createdAt": "2023-09-17T11:35:11.039Z",
+    "id": "1",
+    "layer": "Frontend Development",
+    "title": "JavaScript"
+  },
+  {
+    "content": [
+      {
+        "author": "Midulive",
+        "description": "Todo lo que necesitas saber para empezar lo tienes en este vídeo.",
+        "keywords": [
+          "JavaScript",
+          "TypeScript",
+          "React"
+        ],
+        "title": "Tutorial práctico: React y TypeScript paso a paso, crea tu primera aplicación",
+        "url": "https://www.youtube.com/watch?v=4lAYfsq-2TE"
+      }
+    ],
+    "createdAt": "2023-09-17T16:02:11.126Z",
+    "id": "2",
+    "layer": "Frontend Development",
+    "title": "React"
+  },
+  {
+    "content": [
+      {
+        "author": "Programador X",
+        "description": "Todo lo que necesitas saber de Node.js antes de empezar a programar en backend. Node.js se duerme hasta que recibe pedidos, no bloquea, está enfocado en el uso de streaming, chats, videojuegos, y  funciona bajo un solo hilo. También te cuento su historia, quién lo utiliza, y sus limitaciones.",
+        "keywords": [
+          "Node.js"
+        ],
+        "title": "¿Javascript en el backend? 🤯 ¿Qué es Node.js?",
+        "url": "https://www.youtube.com/watch?v=EsKJlhWs1XY"
+      },
+      {
+        "author": "Midulive",
+        "description": "Aprende a crear una API REST con Node.js, Express y tipos, gracias a TypeScript. Clase basada en el original FullStack Open que tiene toda la atribución al contenido de la clase: https://fullstackopen.com/es/",
+        "keywords": [
+          "Node.js",
+          "TypeScript",
+          "Express "
+        ],
+        "title": "Tutorial TypeScript con Node.js y Express. ¡Crea tu API REST con tipos estáticos DESDE CERO!",
+        "url": "https://www.youtube.com/watch?v=ZpY5KdGQvwI"
+      }
+    ],
+    "createdAt": "2023-09-17T08:13:59.468Z",
+    "id": "3",
+    "layer": "Backend Development",
+    "title": "Node.js"
+  },
+  {
+    "content": [
+      {
+        "author": "HolaMundo",
+        "description": "Si quieres trabajar con inteligencia artificial, machine learning, micro controladores, gestionar archivos, automatizar tareas o crear aplicaciones web tienes que aprender Python, y lo tienes que aprender ahora.",
+        "keywords": [
+          "Python "
+        ],
+        "title": "Aprende Python ahora! curso completo e intensivo desde cero",
+        "url": "https://www.youtube.com/watch?v=tQZy0U8s9LY"
+      }
+    ],
+    "createdAt": "2023-09-17T13:17:24.832Z",
+    "id": "4",
+    "layer": "Backend Development",
+    "title": "Python"
+  },
+  {
+    "content": [
+      {
+        "author": "Fazt",
+        "description": "Este video es una introducción a CSS, Las hojas de estilo en cascada que permiten mejorar el aspecto visual de paginas y sitios web, ademas es una de las tecnologías fundamentales del desarollo web, tanto de aplicaciones grandes como de sitios web pequeños.",
+        "keywords": [
+          "CSS"
+        ],
+        "title": "Curso CSS para Principiantes",
+        "url": "https://www.youtube.com/watch?v=W6GTDfrWjXs"
+      }
+    ],
+    "createdAt": "2023-09-17T18:09:22.212Z",
+    "id": "5",
+    "layer": "Frontend Development",
+    "title": "CSS"
+  }
+]

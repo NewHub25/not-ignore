@@ -6,7 +6,7 @@ export const PageRoutes = () => {
   const { pageId } = useParams();
 
   const pages = {
-    category: <PageCategories />,
+    categories: <PageCategories />,
     trend: <PageTrend />,
   };
   return pages[pageId];

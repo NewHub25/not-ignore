@@ -6,7 +6,9 @@ import Button from "@mui/joy/Button";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { ThemeContext } from "styled-components";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import createId from "../logic/create-id";
+import VideoSmall from "./video-small";
 
 const data = [
   {
@@ -31,13 +33,14 @@ const data = [
   },
 ];
 
-export default function Carousel() {
+export default function Carousel({ content, layer, title }) {
+  const [idCarousel] = useState(createId(title));
   const moveToleft = (isLeft) => {
     const cardImgWidth = document
-      .querySelector(".MuiCard-sizeSm")
+      .querySelector(`#${idCarousel} > div`)
       .getBoundingClientRect().width;
     document
-      .getElementById("box")
+      .getElementById(idCarousel)
       .scrollBy((isLeft ? -1 : 1) * cardImgWidth, 0);
   };
 
@@ -55,7 +58,7 @@ export default function Carousel() {
       }}
     >
       <Box
-        id="box"
+        id={idCarousel}
         sx={{
           display: "flex",
           gap: 1,
@@ -70,26 +73,35 @@ export default function Carousel() {
           "::-webkit-scrollbar": { display: "none" },
         }}
       >
-        {data.map((item) => (
-          <Card
-            orientation="horizontal"
-            size="sm"
-            key={item.title}
-            variant="outlined"
-          >
-            <AspectRatio ratio="1" sx={{ minWidth: 200 }}>
-              <img
-                src={`${item.src}?h=120&fit=crop&auto=format`}
-                srcSet={`${item.src}?h=120&fit=crop&auto=format&dpr=2 2x`}
-                alt={item.title}
-              />
-            </AspectRatio>
-            <Box sx={{ whiteSpace: "nowrap", mx: 1 }}>
-              <Typography level="title-md">{item.title}</Typography>
-              <Typography level="body-sm">{item.description}</Typography>
-            </Box>
-          </Card>
-        ))}
+        {content.map(
+          ({
+            author,
+            // description,
+            keywords,
+            title,
+            url,
+          }) => (
+            // <Card
+            //   orientation="horizontal"
+            //   size="sm"
+            //   key={item.title}
+            //   variant="outlined"
+            // >
+            //   <AspectRatio ratio="1" sx={{ minWidth: 200 }}>
+            //     <img
+            //       src={`${item.src}?h=120&fit=crop&auto=format`}
+            //       srcSet={`${item.src}?h=120&fit=crop&auto=format&dpr=2 2x`}
+            //       alt={item.title}
+            //     />
+            //   </AspectRatio>
+            //   <Box sx={{ whiteSpace: "nowrap", mx: 1 }}>
+            //     <Typography level="title-md">{item.title}</Typography>
+            //     <Typography level="body-sm">{item.description}</Typography>
+            //   </Box>
+            // </Card>
+            <VideoSmall key={url} author={author} keywords={keywords} title={title} url={url} />
+          )
+        )}
       </Box>
       <ButtonUser dir="left" handleClick={() => moveToleft(true)} />
       <ButtonUser dir="right" handleClick={() => moveToleft(false)} />

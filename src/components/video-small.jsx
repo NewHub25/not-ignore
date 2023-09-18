@@ -5,19 +5,24 @@ import Typography from "@mui/joy/Typography";
 // import VisibilityIcon from "@mui/icons-material/Visibility";
 import ViewInArIcon from "@mui/icons-material/ViewInAr";
 import { Link } from "react-router-dom";
-import digVideoId from "../logic/dig-video-id";
+import extractVideoId from "../logic/extract-video-id";
 
-export default function VideoSmall({ videoUrl, title, technologies }) {
-  const { queryDomain, idYouTube } = digVideoId(videoUrl);
-  console.log(queryDomain);
+export default function VideoSmall({
+  author,
+  // description,
+  keywords,
+  title,
+  url,
+}) {
+  const { idYouTube } = extractVideoId(url);
   return (
-    <Card sx={{ minHeight: "200px", width: 300 }}>
+    <Card component="div" sx={{ aspectRatio: "3/2", width: "min(70%,300px)" }}>
       <CardCover>
-        <Link to={videoUrl}>
+        <Link to={url}>
           <img
             src={`https://i3.ytimg.com/vi/${idYouTube}/maxresdefault.jpg`}
             loading="lazy"
-            alt=""
+            alt={title}
           />
         </Link>
       </CardCover>
@@ -35,15 +40,18 @@ export default function VideoSmall({ videoUrl, title, technologies }) {
           pointerEvents: "none",
         }}
       >
-        <Typography level="title-lg" textColor="#fff">
+        <Typography level="title-lg" alignSelf='start' textColor="#fff">
           {title}
+        </Typography>
+        <Typography level="h4" textColor="#fff">
+          {author}
         </Typography>
         <Typography
           startDecorator={<ViewInArIcon color="primary" />}
           textColor="neutral.300"
           align="right"
         >
-          {`[${technologies.join(",")}]`}
+          {`[${keywords.join(", ")}]`}
         </Typography>
       </CardContent>
     </Card>

@@ -1,40 +1,16 @@
-import AspectRatio from "@mui/joy/AspectRatio";
-import Box from "@mui/joy/Box";
-import Typography from "@mui/joy/Typography";
-import Card from "@mui/joy/Card";
-import Button from "@mui/joy/Button";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import { ThemeContext } from "styled-components";
 import { useContext, useState } from "react";
-import createId from "../logic/create-id";
+import { ThemeContext } from "styled-components";
+import { Box, Card, Button, Chip } from "@mui/joy";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import VideoSmall from "./video-small";
+import createId from "../logic/create-id";
+import { CustomDivider } from "./custom-divider";
+import { VideoLibrary } from "@mui/icons-material";
 
-const data = [
-  {
-    src: "https://images.unsplash.com/photo-1502657877623-f66bf489d236",
-    title: "Night view",
-    description: "4.21M views",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1527549993586-dff825b37782",
-    title: "Lake view",
-    description: "4.74M views",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1532614338840-ab30cf10ed36",
-    title: "Mountain view",
-    description: "3.98M views",
-  },
-  {
-    src: "https://cdn.pixabay.com/photo/2023/09/10/00/49/lovebird-8244066_1280.jpg",
-    title: "Bird from jungle",
-    description: "2M views",
-  },
-];
-
-export default function Carousel({ content, layer, title }) {
-  const [idCarousel] = useState(createId(title));
+export default function Carousel({ content, layer, title: titleTech }) {
+  const toggleTheme = useContext(ThemeContext);
+  const [idCarousel] = useState(createId(titleTech));
   const moveToleft = (isLeft) => {
     const cardImgWidth = document
       .querySelector(`#${idCarousel} > div`)
@@ -49,14 +25,25 @@ export default function Carousel({ content, layer, title }) {
       sx={{
         // width: "min(900px, 90%)",
         width: "90%",
-        minHeight: 90,
+        // minHeight: 90,
         position: "relative",
         border: "none",
         background: "transparent",
-        outline: "1px solid black",
-        mx: "auto",
+        margin: "0 auto 2rem",
+        padding: 0,
       }}
     >
+      <CustomDivider>
+        <Chip
+          variant={toggleTheme.name === "dark" ? "outlined" : "solid"}
+          startDecorator={<VideoLibrary />}
+        >
+          <span id={titleTech}>
+            {`${titleTech} - `}
+            <span style={{ opacity: 0.7, fontSize: 14 }}>{layer}</span>
+          </span>
+        </Chip>
+      </CustomDivider>
       <Box
         id={idCarousel}
         sx={{
@@ -81,24 +68,6 @@ export default function Carousel({ content, layer, title }) {
             title,
             url,
           }) => (
-            // <Card
-            //   orientation="horizontal"
-            //   size="sm"
-            //   key={item.title}
-            //   variant="outlined"
-            // >
-            //   <AspectRatio ratio="1" sx={{ minWidth: 200 }}>
-            //     <img
-            //       src={`${item.src}?h=120&fit=crop&auto=format`}
-            //       srcSet={`${item.src}?h=120&fit=crop&auto=format&dpr=2 2x`}
-            //       alt={item.title}
-            //     />
-            //   </AspectRatio>
-            //   <Box sx={{ whiteSpace: "nowrap", mx: 1 }}>
-            //     <Typography level="title-md">{item.title}</Typography>
-            //     <Typography level="body-sm">{item.description}</Typography>
-            //   </Box>
-            // </Card>
             <VideoSmall
               key={url}
               author={author}

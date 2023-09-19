@@ -16,13 +16,21 @@ export default function VideoSmall({
 }) {
   const { idYouTube } = extractVideoId(url);
   return (
-    <Card component="div" sx={{ aspectRatio: "3/2", width: "min(70%,300px)" }}>
+    <Card
+      component="div"
+      sx={{
+        aspectRatio: "3/2",
+        width: "min(70%,300px)",
+        "--Card-radius": ".5rem",
+      }}
+    >
       <CardCover>
         <Link to={url}>
           <img
             src={`https://i3.ytimg.com/vi/${idYouTube}/maxresdefault.jpg`}
             loading="lazy"
             alt={title}
+            style={{ borderRadius: ".5rem" }}
           />
         </Link>
       </CardCover>
@@ -40,10 +48,10 @@ export default function VideoSmall({
           pointerEvents: "none",
         }}
       >
-        <Typography level="title-lg" alignSelf="start" textColor="#fff">
+        <Typography level="title-lg" alignSelf="start" textColor="#eee">
           {title}
         </Typography>
-        <Typography level="h4" textColor="#fff">
+        <Typography level="h4" textColor="#eee">
           {author}
         </Typography>
         <Typography

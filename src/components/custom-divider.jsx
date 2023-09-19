@@ -11,7 +11,7 @@ export const CustomDivider = ({ orientation, children }) => {
       sx={{
         "--Divider-lineColor": toggleTheme.text,
         // "--Divider-thickness": "2px",
-        margin: "1rem",
+        m:0,
       }}
     >
       {children}

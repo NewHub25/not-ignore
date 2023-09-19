@@ -15,11 +15,13 @@ export const FormNewVideo = () => {
       <img
         src="/assets/cronometro.png"
         style={{
+          borderRadius: 10,
           flexGrow: 0,
           flexShrink: 2,
           maxWidth: "40%",
-          ...(matches ? { display: "block" } : { display: "none" }),
+          ...(matches ? { display: "block" } : { display: "none" }),  
         }}
+        loading="lazy"
       />
       <CustomizedSteppers step={1} />
     </section>

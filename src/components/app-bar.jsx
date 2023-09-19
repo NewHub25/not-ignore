@@ -64,19 +64,9 @@ function ResponsiveAppBar() {
             />
           </IconButton>
           <Link to="/">
-            <Typography
-              variant="h5"
-              noWrap
-              component="h1"
-              sx={{
-                mr: 10,
-                display: { xs: "none", md: "flex" },
-                fontWeight: 700,
-                color: toggleTheme.principal,
-              }}
-            >
+            <NameProjectComponent color={toggleTheme.text} xs="none" md="flex">
               {nameProject}
-            </Typography>
+            </NameProjectComponent>
           </Link>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -130,20 +120,9 @@ function ResponsiveAppBar() {
               sx={{ backgroundColor: "transparent" }}
             />
           </IconButton>
-          <Typography
-            variant="h6"
-            noWrap
-            component="h1"
-            sx={{
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontWeight: 700,
-              textDecoration: "none",
-              color: toggleTheme.text,
-            }}
-          >
+          <NameProjectComponent color={toggleTheme.text} xs="flex" md="none">
             <Link to="/">{nameProject}</Link>
-          </Typography>
+          </NameProjectComponent>
           <Box
             sx={{
               flexGrow: 1,
@@ -245,3 +224,24 @@ function ResponsiveAppBar() {
   );
 }
 export default ResponsiveAppBar;
+
+const NameProjectComponent = ({ children, xs, md, color }) => {
+  return (
+    <Typography
+      variant="h5"
+      noWrap
+      component="h1"
+      sx={{
+        mr: 5,
+        display: { xs, md },
+        flexGrow: 1,
+        fontWeight: 700,
+        color,
+        letterSpacing: 2,
+        textShadow: "2px 2px 2px #3333",
+      }}
+    >
+      {children}
+    </Typography>
+  );
+};

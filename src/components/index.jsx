@@ -1,8 +1,8 @@
 import Carousel from "./carousel";
-import { getSession } from "../logic/save-session";
+import { useLoaderData } from "react-router-dom";
 
 export const Index = () => {
-  const CATEGORIES = getSession();
+  const CATEGORIES = useLoaderData();
 
   return (
     <>

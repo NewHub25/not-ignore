@@ -99,7 +99,13 @@ export default function Carousel({ content, layer, title }) {
             //     <Typography level="body-sm">{item.description}</Typography>
             //   </Box>
             // </Card>
-            <VideoSmall key={url} author={author} keywords={keywords} title={title} url={url} />
+            <VideoSmall
+              key={url}
+              author={author}
+              keywords={keywords}
+              title={title}
+              url={url}
+            />
           )
         )}
       </Box>

@@ -40,7 +40,7 @@ export default function VideoSmall({
           pointerEvents: "none",
         }}
       >
-        <Typography level="title-lg" alignSelf='start' textColor="#fff">
+        <Typography level="title-lg" alignSelf="start" textColor="#fff">
           {title}
         </Typography>
         <Typography level="h4" textColor="#fff">

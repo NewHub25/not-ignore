@@ -7,16 +7,18 @@ import { ThemeToggleProvider } from "./components/ThemeProvider.jsx";
 import { ErrorPage } from "./components/error-page.jsx";
 import { Index } from "./components/index.jsx";
 import { FormNewVideo } from "./components/form-new-video.jsx";
-
-import "./index.css";
-import { PageRoutes } from "./pages/page-routes.jsx";
 import { Technologies } from "./components/technology.jsx";
+import { PageRoutes } from "./pages/page-routes.jsx";
+import "./index.css";
+
+import { loaderApp, loaderIndex } from "./logic/loaders.js";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     errorElement: <ErrorPage />,
+    loader: loaderApp,
     children: [
       {
         errorElement: <ErrorPage />,
@@ -24,6 +26,7 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <Index />,
+            loader: loaderIndex,
           },
           {
             path: "newvideo",

@@ -12,8 +12,8 @@ export const FormNewVideo = () => {
         justifyContent: "space-evenly",
       }}
     >
-      <img
-        src="/assets/cronometro.png"
+      {/* <img
+        src="/assets/task-react.jpg"
         style={{
           borderRadius: 10,
           flexGrow: 0,
@@ -22,7 +22,8 @@ export const FormNewVideo = () => {
           ...(matches ? { display: "block" } : { display: "none" }),  
         }}
         loading="lazy"
-      />
+      /> */}
+      
       <CustomizedSteppers step={1} />
     </section>
   );

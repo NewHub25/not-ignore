@@ -52,14 +52,14 @@ export default function VideoSmall({
           {title}
         </Typography>
         <Typography level="h4" textColor="#eee">
-          {author}
+          &mdash; {author}
         </Typography>
         <Typography
           startDecorator={<ViewInArIcon color="primary" />}
           textColor="neutral.300"
           align="right"
         >
-          {`[${keywords.join(", ")}]`}
+          {`[ ${keywords.join(", ")} ]`}
         </Typography>
       </CardContent>
     </Card>

@@ -25,22 +25,23 @@ export default function Carousel({ content, layer, title: titleTech }) {
       sx={{
         // width: "min(900px, 90%)",
         width: "90%",
-        // minHeight: 90,
         position: "relative",
         border: "none",
         background: "transparent",
-        margin: "0 auto 2rem",
+        margin: "0 auto 3rem",
         padding: 0,
       }}
     >
-      <CustomDivider>
+      <CustomDivider sx={{ height: "30px" }}>
         <Chip
-          variant={toggleTheme.name === "dark" ? "outlined" : "solid"}
+          variant={toggleTheme.name === "dark" ? "solid" : "outlined"}
           startDecorator={<VideoLibrary />}
         >
-          <span id={titleTech}>
+          <span id={titleTech} style={{ fontWeight: 700, fontSize: 18 }}>
             {`${titleTech} - `}
-            <span style={{ opacity: 0.7, fontSize: 14 }}>{layer}</span>
+            <span style={{ opacity: 0.7, fontSize: 14, fontWeight: 400 }}>
+              {layer}
+            </span>
           </span>
         </Chip>
       </CustomDivider>
@@ -95,7 +96,7 @@ const ButtonUser = ({ dir, handleClick }) => {
       sx={{
         position: "absolute",
         [dirVar ? "left" : "right"]: 0,
-        top: "calc(50% - 1.5rem)",
+        top: "calc(50% - 1.5rem + 15px)",
         zIndex: 10,
         borderRadius: "50%",
         aspectRatio: "1/1",

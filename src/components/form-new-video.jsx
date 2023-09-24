@@ -1,5 +1,7 @@
 import { useMediaQuery } from "@mui/material";
 import CustomizedSteppers from "./customized-steppers";
+import CardLayers3d from "./card-layers";
+import { CODE_IMAGES } from "../data/images-src";
 
 export const FormNewVideo = () => {
   const matches = useMediaQuery("(min-width: 992px)");
@@ -12,18 +14,12 @@ export const FormNewVideo = () => {
         justifyContent: "space-evenly",
       }}
     >
-      {/* <img
-        src="/assets/task-react.jpg"
-        style={{
-          borderRadius: 10,
-          flexGrow: 0,
-          flexShrink: 2,
-          maxWidth: "40%",
-          ...(matches ? { display: "block" } : { display: "none" }),  
+      <CardLayers3d
+        images={CODE_IMAGES}
+        sx={{
+          ...(matches ? { display: "block" } : { display: "none" }),
         }}
-        loading="lazy"
-      /> */}
-      
+      />
       <CustomizedSteppers step={1} />
     </section>
   );

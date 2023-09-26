@@ -8,7 +8,7 @@ import createId from "../logic/create-id";
 import { CustomDivider } from "./custom-divider";
 import { VideoLibrary } from "@mui/icons-material";
 
-export default function Carousel({ content, layer, title: titleTech }) {
+export default function CarouselList({ content, layer, title: titleTech }) {
   const toggleTheme = useContext(ThemeContext);
   const [idCarousel] = useState(createId(titleTech));
   const moveToleft = (isLeft) => {

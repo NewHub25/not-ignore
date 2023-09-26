@@ -1,4 +1,4 @@
-import Carousel from "./carousel";
+import CarouselList from "./carousel-list";
 import { useLoaderData } from "react-router-dom";
 import Footer from "./footer";
 
@@ -9,7 +9,7 @@ export const Index = () => {
     <>
       {CATEGORIES &&
         CATEGORIES.map(({ content, layer, title }) => (
-          <Carousel key={title} content={content} layer={layer} title={title} />
+          <CarouselList key={title} content={content} layer={layer} title={title} />
         ))}
       <Footer />
     </>

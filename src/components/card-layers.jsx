@@ -34,7 +34,7 @@ export default function CardLayers3d({ images, sx }) {
           borderColor: "#000",
           alignItems: "center",
           justifyContent: "center",
-          padding: 0
+          padding: 0,
         }}
       >
         <ImageToLayer src={images[0]} />

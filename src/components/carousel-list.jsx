@@ -3,10 +3,11 @@ import { ThemeContext } from "styled-components";
 import { Box, Card, Button, Chip } from "@mui/joy";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import VideoSmall from "./video-small";
+import MediaCard from "./media-card";
 import createId from "../logic/create-id";
 import { CustomDivider } from "./custom-divider";
 import { VideoLibrary } from "@mui/icons-material";
+import extractVideoId from "../logic/extract-video-id";
 
 export default function CarouselList({ content, layer, title: titleTech }) {
   const toggleTheme = useContext(ThemeContext);
@@ -61,7 +62,7 @@ export default function CarouselList({ content, layer, title: titleTech }) {
           "::-webkit-scrollbar": { display: "none" },
         }}
       >
-        {content.map(
+        {[...content, ...content].map(
           ({
             author,
             // description,
@@ -69,12 +70,14 @@ export default function CarouselList({ content, layer, title: titleTech }) {
             title,
             url,
           }) => (
-            <VideoSmall
-              key={url}
+            <MediaCard
+              key={url + Math.random()}
               author={author}
               keywords={keywords}
               title={title}
-              url={url}
+              src={`https://i3.ytimg.com/vi/${
+                extractVideoId(url).idYouTube
+              }/maxresdefault.jpg`}
             />
           )
         )}
@@ -97,7 +100,7 @@ const ButtonUser = ({ dir, handleClick }) => {
         position: "absolute",
         [dirVar ? "left" : "right"]: 0,
         top: "calc(50% - 1.5rem + 15px)",
-        zIndex: 10,
+        zIndex: 200,
         borderRadius: "50%",
         aspectRatio: "1/1",
         width: "3rem",

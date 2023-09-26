@@ -1,38 +1,33 @@
+import { Link } from "react-router-dom";
 import Card from "@mui/joy/Card";
 import CardCover from "@mui/joy/CardCover";
 import CardContent from "@mui/joy/CardContent";
 import Typography from "@mui/joy/Typography";
-// import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 import ViewInArIcon from "@mui/icons-material/ViewInAr";
-import { Link } from "react-router-dom";
-import extractVideoId from "../logic/extract-video-id";
+import { useMediaQuery } from "@mui/material";
 
-export default function VideoSmall({
-  author,
-  // description,
-  keywords,
-  title,
-  url,
-}) {
-  const { idYouTube } = extractVideoId(url);
+export default function MediaCard({ author, keywords, title, src }) {
+  const matches = useMediaQuery("(min-width: 992px)");
+
   return (
     <Card
       component="div"
       sx={{
-        aspectRatio: "3/2",
-        width: "min(70%,300px)",
         "--Card-radius": ".5rem",
+        aspectRatio: "4/3",
+        width: `min(80%, 300px)`,
+        height: matches ? "250px" : "150px",
       }}
     >
       <CardCover>
-        <Link to={url}>
-          <img
-            src={`https://i3.ytimg.com/vi/${idYouTube}/maxresdefault.jpg`}
-            loading="lazy"
-            alt={title}
-            style={{ borderRadius: ".5rem" }}
-          />
-        </Link>
+        <img
+          id="img"
+          src={src}
+          loading="lazy"
+          alt={title}
+          style={{ borderRadius: ".5rem" }}
+        />
       </CardCover>
       <CardCover
         sx={{
@@ -62,6 +57,28 @@ export default function VideoSmall({
           {`[ ${keywords.join(", ")} ]`}
         </Typography>
       </CardContent>
+      <Link to={`${src}`}>
+        <CardCover
+          sx={{
+            opacity: 0,
+            transition: "opacity .7s",
+            zIndex: 100,
+            "&:hover": {
+              opacity: 1,
+            },
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            backdropFilter: "blur(10px)",
+          }}
+        >
+          <span style={{ fontSize: "3rem", height: 40 }}>
+            <VisibilityIcon sx={{ color: "#eee", fontSize: "5rem" }} />
+          </span>
+          <span style={{ fontSize: "2rem", color: "#eee" }}>Ver</span>
+        </CardCover>
+      </Link>
     </Card>
   );
 }

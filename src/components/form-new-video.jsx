@@ -1,10 +1,21 @@
+import { useRef } from "react";
+import { useLoaderData } from "react-router-dom";
 import { useMediaQuery } from "@mui/material";
 import CustomizedSteppers from "./customized-steppers";
 import CardLayers3d from "./card-layers";
-import { CODE_IMAGES } from "../utils/source-images";
+import extractVideoId from "../logic/extract-video-id";
 
 export const FormNewVideo = () => {
+  const CATEGORIES = useLoaderData();
   const matches = useMediaQuery("(min-width: 992px)");
+  const arrayRefContent = useRef(
+    CATEGORIES.flatMap((m) => m.content).map((content) => ({
+      ...content,
+      url: `https://i3.ytimg.com/vi/${
+        extractVideoId(content.url).idYouTube
+      }/maxresdefault.jpg`,
+    }))
+  );
 
   return (
     <section
@@ -15,7 +26,7 @@ export const FormNewVideo = () => {
       }}
     >
       <CardLayers3d
-        images={CODE_IMAGES}
+        contents={arrayRefContent.current}
         sx={{
           ...(matches ? { display: "block" } : { display: "none" }),
         }}

@@ -3,13 +3,14 @@ import Box from "@mui/joy/Box";
 import Card from "@mui/joy/Card";
 import CardCover from "@mui/joy/CardCover";
 import { beginByIndex } from "../logic/begin-index";
+import MediaCard from "./media-card";
 
-export default function CardLayers3d({ images, sx }) {
-  const [arrayImg, setArrayImg] = useState(images);
+export default function CardLayers3d({ contents, sx }) {
+  const [array, setArray] = useState(contents);
 
   useEffect(() => {
     const idInterval = setInterval(() => {
-      setArrayImg((prevArray) => beginByIndex(prevArray, 1));
+      setArray((prevArray) => beginByIndex(prevArray, 1));
     }, 3000);
     return () => {
       clearInterval(idInterval);
@@ -41,8 +42,8 @@ export default function CardLayers3d({ images, sx }) {
       <Card
         variant="outlined"
         sx={{
-          height: "400px",
-          width: "400px",
+          width: "450px",
+          aspectRatio: "4/3",
           backgroundColor: "transparent",
           borderColor: "#000",
           alignItems: "center",
@@ -50,7 +51,7 @@ export default function CardLayers3d({ images, sx }) {
           padding: 0,
         }}
       >
-        <ImageToLayer src={arrayImg[0]} />
+        <ImageToLayer src={array[2].url} />
         <CardCover
           sx={{
             border: "1px solid",
@@ -61,7 +62,7 @@ export default function CardLayers3d({ images, sx }) {
             justifyContent: "center",
           }}
         >
-          <ImageToLayer src={arrayImg[1]} />
+          <ImageToLayer src={array[1].url} />
         </CardCover>
         <CardCover
           sx={{
@@ -75,7 +76,12 @@ export default function CardLayers3d({ images, sx }) {
             backdropFilter: "blur(1px)",
           }}
         >
-          <ImageToLayer src={arrayImg[2]} />
+          <MediaCard
+            author={array[0].author}
+            keywords={array[0].keywords}
+            title={array[0].title}
+            src={array[0].url}
+          />
         </CardCover>
       </Card>
     </Box>
@@ -88,8 +94,8 @@ const ImageToLayer = ({ src }) => {
       src={src}
       loading="lazy"
       style={{
-        width: "80%",
-        // height: "100%",
+        width: "75%",
+        height: "75%",
         aspectRatio: "1/1",
         objectFit: "cover",
       }}

@@ -9,7 +9,12 @@ export const Index = () => {
     <>
       {CATEGORIES &&
         CATEGORIES.map(({ content, layer, title }) => (
-          <CarouselList key={title} content={content} layer={layer} title={title} />
+          <CarouselList
+            key={title}
+            content={content}
+            layer={layer}
+            title={title}
+          />
         ))}
       <Footer />
     </>

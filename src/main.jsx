@@ -31,6 +31,7 @@ const router = createBrowserRouter([
           {
             path: "newvideo",
             element: <FormNewVideo />,
+            loader: loaderIndex,
           },
           {
             path: "pages/:pageId",

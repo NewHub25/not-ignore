@@ -4,6 +4,8 @@ import { useMediaQuery } from "@mui/material";
 import CustomizedSteppers from "./customized-steppers";
 import CardLayers3d from "./card-layers";
 import extractVideoId from "../logic/extract-video-id";
+import { FormBasic } from "./form";
+import { Box } from "@mui/joy";
 
 export const FormNewVideo = () => {
   const CATEGORIES = useLoaderData();
@@ -31,7 +33,10 @@ export const FormNewVideo = () => {
           ...(matches ? { display: "block" } : { display: "none" }),
         }}
       />
-      <CustomizedSteppers step={1} />
+      <Box>
+        <CustomizedSteppers step={1} />
+        <FormBasic />
+      </Box>
     </section>
   );
 };

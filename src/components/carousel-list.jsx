@@ -62,7 +62,7 @@ export default function CarouselList({ content, layer, title: titleTech }) {
           "::-webkit-scrollbar": { display: "none" },
         }}
       >
-        {[...content, ...content].map(
+        {content.map(
           ({
             author,
             // description,
@@ -71,7 +71,7 @@ export default function CarouselList({ content, layer, title: titleTech }) {
             url,
           }) => (
             <MediaCard
-              key={url + Math.random()}
+              key={url}
               author={author}
               keywords={keywords}
               title={title}

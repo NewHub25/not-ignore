@@ -1,35 +1,60 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import {
+  buttonVariants,
+  dotsVariants,
+  imgVariants,
+} from "../animation/variants";
 
-export const CarouselMedia = ({ images }) => {
+export const CarouselMedia = ({ images, sx }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState("left");
 
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex + 1 === images.length ? 0 : prevIndex + 1
-    );
-  };
   const handlePrevious = () => {
+    setDirection("left");
     setCurrentIndex((prevIndex) =>
       prevIndex - 1 < 0 ? images.length - 1 : prevIndex - 1
     );
   };
+  const handleNext = () => {
+    setDirection("right");
+    setCurrentIndex((prevIndex) =>
+      prevIndex + 1 === images.length ? 0 : prevIndex + 1
+    );
+  };
   const handleDotClick = (index) => {
+    setDirection(index > currentIndex ? "right" : "left");
     setCurrentIndex(index);
   };
 
   return (
-    <div style={{ width: 400, position: "relative" }}>
-      <img
-        key={currentIndex}
-        src={images[currentIndex]}
-        style={{
-          width: "100%",
-          aspectRatio: "4/3",
-          borderRadius: 10,
-          border: `1px solid #0090de`,
-        }}
-      />
+    <div
+      style={{
+        width: 400,
+        height: 330,
+        position: "relative",
+        overflow: "hidden",
+        ...sx
+      }}
+    >
+      <AnimatePresence>
+        <motion.img
+          key={currentIndex}
+          src={images[currentIndex]}
+          style={{
+            width: "100%",
+            aspectRatio: "4/3",
+            borderRadius: 10,
+            border: `1px solid #0090de`,
+            position: "absolute",
+            top: 0,
+          }}
+          variants={imgVariants}
+          initial={direction === "left" ? "hiddenLeft" : "hiddenRight"}
+          animate="visible"
+          exit="exit"
+        />
+      </AnimatePresence>
       <div
         style={{
           position: "absolute",
@@ -50,22 +75,29 @@ export const CarouselMedia = ({ images }) => {
         style={{
           display: "flex",
           justifyContent: "center",
+          alignItems: "center",
           gap: 5,
-          marginTop: 7,
+          height: 20,
+          position: "absolute",
+          bottom: 0,
+          width: "100%",
         }}
       >
         {images.map((_, index) => (
-          <div
+          <motion.div
+            variants={dotsVariants}
+            initial="initial"
+            animate={currentIndex === index ? "animate" : ""}
+            whileHover="hover"
             key={index}
-            // className={`dot ${currentIndex === index ? "active" : ""}`}
             style={{
               width: 15,
-              aspectRatio: 1,
+              height: 15,
               backgroundColor: currentIndex === index ? "#eee5" : "#0090de",
               borderRadius: "50%",
             }}
             onClick={() => handleDotClick(index)}
-          ></div>
+          ></motion.div>
         ))}
       </div>
     </div>
@@ -74,7 +106,9 @@ export const CarouselMedia = ({ images }) => {
 
 const ArrowButtons = ({ dir, handle }) => {
   return (
-    <div
+    <motion.div
+      variants={buttonVariants}
+      whileHover="hover"
       style={{
         width: 20,
         height: 20,
@@ -93,6 +127,6 @@ const ArrowButtons = ({ dir, handle }) => {
           <path d="m304 974-56-57 343-343-343-343 56-57 400 400-400 400Z" />
         </svg>
       )}
-    </div>
+    </motion.div>
   );
 };

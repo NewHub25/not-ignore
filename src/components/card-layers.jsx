@@ -1,8 +1,21 @@
+import { useEffect, useState } from "react";
 import Box from "@mui/joy/Box";
 import Card from "@mui/joy/Card";
 import CardCover from "@mui/joy/CardCover";
+import { beginByIndex } from "../logic/begin-index";
 
 export default function CardLayers3d({ images, sx }) {
+  const [arrayImg, setArrayImg] = useState(images);
+
+  useEffect(() => {
+    const idInterval = setInterval(() => {
+      setArrayImg((prevArray) => beginByIndex(prevArray, 1));
+    }, 3000);
+    return () => {
+      clearInterval(idInterval);
+    };
+  }, []);
+
   return (
     <Box
       sx={{
@@ -37,11 +50,9 @@ export default function CardLayers3d({ images, sx }) {
           padding: 0,
         }}
       >
-        <ImageToLayer src={images[0]} />
+        <ImageToLayer src={arrayImg[0]} />
         <CardCover
           sx={{
-            // background:
-            //   "linear-gradient(to top, rgba(0,0,0,0.4), rgba(0,0,0,0) 200px), linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0) 300px)",
             border: "1px solid",
             borderColor: "#777",
             backdropFilter: "blur(1px)",
@@ -50,7 +61,7 @@ export default function CardLayers3d({ images, sx }) {
             justifyContent: "center",
           }}
         >
-          <ImageToLayer src={images[1]} />
+          <ImageToLayer src={arrayImg[1]} />
         </CardCover>
         <CardCover
           sx={{
@@ -64,7 +75,7 @@ export default function CardLayers3d({ images, sx }) {
             backdropFilter: "blur(1px)",
           }}
         >
-          <ImageToLayer src={images[2]} />
+          <ImageToLayer src={arrayImg[2]} />
         </CardCover>
       </Card>
     </Box>

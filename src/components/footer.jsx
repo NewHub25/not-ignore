@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState } from "react";
 
 import AspectRatio from "@mui/joy/AspectRatio";
 import Box from "@mui/joy/Box";
@@ -21,7 +21,7 @@ import SendIcon from "@mui/icons-material/Send";
 import ColorLensRoundedIcon from "@mui/icons-material/ColorLensRounded";
 
 export default function Footer() {
-  const [color, setColor] = React.useState("neutral");
+  const [color, setColor] = useState("neutral");
   return (
     <Sheet
       variant="solid"
@@ -100,10 +100,7 @@ export default function Footer() {
             minHeight={80}
             sx={{ flexBasis: { xs: 200, md: "initial" } }}
           >
-            <img
-              alt=""
-              src="/vite.svg"
-            />
+            <img alt="" src="/vite.svg" />
           </AspectRatio>
           <CardContent>
             <Typography level="body-sm">Intro to the MUI ecosystem</Typography>
@@ -138,11 +135,7 @@ export default function Footer() {
               <ListItem>
                 <ListItemButton>
                   <ListItemDecorator>
-                    <img
-                      alt=""
-                      src="/React.svg"
-                      width="24"
-                    />
+                    <img alt="" src="/React.svg" width="24" />
                   </ListItemDecorator>
                   MUI Core
                 </ListItemButton>
@@ -150,11 +143,7 @@ export default function Footer() {
               <ListItem>
                 <ListItemButton>
                   <ListItemDecorator>
-                    <img
-                      alt=""
-                      src="/React.svg"
-                      width="24"
-                    />
+                    <img alt="" src="/React.svg" width="24" />
                   </ListItemDecorator>
                   MUI X
                 </ListItemButton>
@@ -162,11 +151,7 @@ export default function Footer() {
               <ListItem>
                 <ListItemButton>
                   <ListItemDecorator>
-                    <img
-                      alt=""
-                      src="/React.svg"
-                      width="24"
-                    />
+                    <img alt="" src="/React.svg" width="24" />
                   </ListItemDecorator>
                   MUI Toolpad
                   <Chip
@@ -181,11 +166,7 @@ export default function Footer() {
               <ListItem>
                 <ListItemButton>
                   <ListItemDecorator>
-                    <img
-                      alt=""
-                      src="/icon.svg"
-                      width="24"
-                    />
+                    <img alt="" src="/icon.svg" width="24" />
                   </ListItemDecorator>
                   Design kits
                 </ListItemButton>
@@ -193,11 +174,7 @@ export default function Footer() {
               <ListItem>
                 <ListItemButton>
                   <ListItemDecorator>
-                    <img
-                      alt=""
-                      src="/icon.svg"
-                      width="24"
-                    />
+                    <img alt="" src="/icon.svg" width="24" />
                   </ListItemDecorator>
                   Templates
                 </ListItemButton>

@@ -12,6 +12,7 @@ import { PageRoutes } from "./pages/page-routes.jsx";
 import "./index.css";
 
 import { loaderApp, loaderIndex } from "./logic/loaders.js";
+import { VideoRoom } from "./components/video-room.jsx";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
           {
             path: "tech/:techId",
             element: <Technologies />,
+          },
+          {
+            path: "room/:roomId",
+            element: <VideoRoom />,
           },
         ],
       },

@@ -6,8 +6,10 @@ import Typography from "@mui/joy/Typography";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import ViewInArIcon from "@mui/icons-material/ViewInAr";
 import { useMediaQuery } from "@mui/material";
+import { useRef } from "react";
+import extractVideoId from "../logic/extract-video-id";
 
-export default function MediaCard({ author, keywords, title, src }) {
+export default function MediaCard({ author, keywords, title, src, idVideo }) {
   const matches = useMediaQuery("(min-width: 992px)");
 
   return (
@@ -57,7 +59,7 @@ export default function MediaCard({ author, keywords, title, src }) {
           {`[ ${keywords.join(", ")} ]`}
         </Typography>
       </CardContent>
-      <Link to={`${src}`}>
+      <Link to={`/room/${idVideo}`}>
         <CardCover
           sx={{
             opacity: 0,

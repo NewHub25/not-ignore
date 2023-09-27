@@ -69,17 +69,19 @@ export default function CarouselList({ content, layer, title: titleTech }) {
             keywords,
             title,
             url,
-          }) => (
-            <MediaCard
-              key={url}
-              author={author}
-              keywords={keywords}
-              title={title}
-              src={`https://i3.ytimg.com/vi/${
-                extractVideoId(url).idYouTube
-              }/maxresdefault.jpg`}
-            />
-          )
+          }) => {
+            const { idYouTube } = extractVideoId(url);
+            return (
+              <MediaCard
+                key={url}
+                author={author}
+                keywords={keywords}
+                title={title}
+                src={`https://i3.ytimg.com/vi/${idYouTube}/maxresdefault.jpg`}
+                idVideo={idYouTube}
+              />
+            );
+          }
         )}
       </Box>
       <ButtonUser dir="left" handleClick={() => moveToleft(true)} />

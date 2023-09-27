@@ -13,7 +13,7 @@ export const FormNewVideo = () => {
   const arrayRefContent = useRef(
     CATEGORIES.flatMap((m) => m.content).map((content) => ({
       ...content,
-      url: `https://i3.ytimg.com/vi/${
+      src: `https://i3.ytimg.com/vi/${
         extractVideoId(content.url).idYouTube
       }/maxresdefault.jpg`,
     }))

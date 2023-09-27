@@ -4,6 +4,7 @@ import Card from "@mui/joy/Card";
 import CardCover from "@mui/joy/CardCover";
 import { beginByIndex } from "../logic/begin-index";
 import MediaCard from "./media-card";
+import extractVideoId from "../logic/extract-video-id";
 
 export default function CardLayers3d({ contents, sx }) {
   const [array, setArray] = useState(contents);
@@ -51,7 +52,7 @@ export default function CardLayers3d({ contents, sx }) {
           padding: 0,
         }}
       >
-        <ImageToLayer src={array[2].url} />
+        <ImageToLayer src={array[2].src} />
         <CardCover
           sx={{
             border: "1px solid",
@@ -62,7 +63,7 @@ export default function CardLayers3d({ contents, sx }) {
             justifyContent: "center",
           }}
         >
-          <ImageToLayer src={array[1].url} />
+          <ImageToLayer src={array[1].src} />
         </CardCover>
         <CardCover
           sx={{
@@ -80,7 +81,8 @@ export default function CardLayers3d({ contents, sx }) {
             author={array[0].author}
             keywords={array[0].keywords}
             title={array[0].title}
-            src={array[0].url}
+            src={array[0].src}
+            idVideo={extractVideoId(array[0].url).idYouTube}
           />
         </CardCover>
       </Card>

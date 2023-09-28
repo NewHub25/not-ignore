@@ -1,11 +1,11 @@
 export const ASSETS_IMG = [
-  "/assets/code-random.jpg",
   "/assets/code-top-camera.jpg",
   "/assets/human-robot.jpg",
   "/assets/programmer-css.jpg",
   "/assets/programmer-park.jpg",
   "/assets/programmer-room.jpg",
   "/assets/source-code.jpg",
+  "/assets/code-random.jpg",
 ];
 
 export const imagesPexels = [

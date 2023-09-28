@@ -1,44 +1,46 @@
 import { Box, Button, Checkbox, FormControl, FormLabel, Input } from "@mui/joy";
-import { Link } from "react-router-dom";
+import { Form, Link, useLoaderData } from "react-router-dom";
 import ExampleChoiceChipCheckbox from "./choice-chip";
+import { useState } from "react";
 
 export const FormBasic = () => {
+  const CATEGORIES = useLoaderData();
+  const [valueCheckbox, setValueCheckbox] = useState([]);
+
   return (
-    <form
+    <Form
       onSubmit={(event) => {
         event.preventDefault();
         const formElements = event.currentTarget.elements;
         const data = {
-          email: formElements.email.value,
+          url: formElements.url.value,
           password: formElements.password.value,
           persistent: formElements.persistent.checked,
         };
         alert(JSON.stringify(data, null, 2));
+        console.log(valueCheckbox);
       }}
     >
-      <FormControl required>
-        <FormLabel>Email</FormLabel>
-        <Input type="email" name="email" />
-      </FormControl>
-      <FormControl required>
-        <FormLabel>Password</FormLabel>
-        <Input type="password" name="password" />
-      </FormControl>
       <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
+      // sx={{
+      //   display: "flex",
+      //   justifyContent: "space-between",
+      //   alignItems: "center",
+      // }}
       >
-        <Checkbox size="sm" label="Remember for 30 days" name="persistent" />
+        <ExampleChoiceChipCheckbox
+          valueCheckbox={valueCheckbox}
+          setValueCheckbox={setValueCheckbox}
+          optionsToCheck={CATEGORIES.map((m) => m.title)}
+        />
         <Link fontSize="sm" href="#replace-with-a-link" fontWeight="lg">
-          Forgot your password?
+          ¿Tienes una nueva categoría 😁?
         </Link>
       </Box>
-      <Box>
-        <ExampleChoiceChipCheckbox />
-      </Box>
+      <FormControl required>
+        <FormLabel>Dirección URL Youtube</FormLabel>
+        <Input type="text" name="url" />
+      </FormControl>
       <Box
         sx={{
           display: "flex",
@@ -47,8 +49,7 @@ export const FormBasic = () => {
         }}
       >
         <Button type="submit">Sign in</Button>
-        <Button type="button">Nueva Categoria</Button>
       </Box>
-    </form>
+    </Form>
   );
 };

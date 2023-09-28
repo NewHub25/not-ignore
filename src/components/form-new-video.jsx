@@ -34,7 +34,7 @@ export const FormNewVideo = () => {
         }}
       />
       <Box>
-        <CustomizedSteppers step={1} />
+        <CustomizedSteppers step={0} />
         <FormBasic />
       </Box>
     </section>

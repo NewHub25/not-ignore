@@ -51,6 +51,7 @@ function ResponsiveAppBar() {
         backgroundColor: "transparent",
         boxShadow: `0px 1px 5px ${toggleTheme.text}`,
         color: toggleTheme.principal,
+        height: "5rem",
       }}
     >
       <Container maxWidth="xl">

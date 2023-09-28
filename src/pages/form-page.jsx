@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { Outlet, useLoaderData } from "react-router-dom";
 import { useMediaQuery } from "@mui/material";
-import CardLayers3d from "./card-layers";
+import CardLayers3d from "../components/card-layers";
 import extractVideoId from "../logic/extract-video-id";
 
 export const FormNewVideo = () => {
@@ -19,15 +19,19 @@ export const FormNewVideo = () => {
   return (
     <section
       style={{
-        padding: "2rem",
+        boxSizing: "border-box",
+        height: "calc(100vh - 5rem)",
         display: "flex",
+        alignItems: "center",
         justifyContent: "space-evenly",
       }}
     >
       <CardLayers3d
         contents={arrayRefContent.current}
         sx={{
-          ...(matches ? { display: "block" } : { display: "none" }),
+          ...(matches
+            ? { display: "block", transform: "scale(1.2)" }
+            : { display: "none" }),
         }}
       />
       <Outlet />

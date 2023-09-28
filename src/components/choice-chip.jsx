@@ -5,13 +5,17 @@ import Typography from "@mui/joy/Typography";
 import Sheet from "@mui/joy/Sheet";
 import Done from "@mui/icons-material/Done";
 
-export default function ExampleChoiceChipCheckbox({
+export default function ChoiceChipCheckbox({
   optionsToCheck,
   valueCheckbox,
   setValueCheckbox,
+  sx,
 }) {
   return (
-    <Sheet variant="outlined" sx={{ width: 360, p: 2, borderRadius: "sm" }}>
+    <Sheet
+      variant="outlined"
+      sx={{ width: 360, p: 2, borderRadius: "sm", ...sx }}
+    >
       <Typography id="rank" level="body-sm" fontWeight="lg" sx={{ mb: 1.5 }}>
         Elige una categoría
       </Typography>

@@ -110,7 +110,7 @@ export default function CustomizedSteppers({ step }) {
   const toggleTheme = useContext(ThemeContext);
 
   return (
-    <Stack sx={{ flexGrow: 2 }} spacing={4}>
+    <Stack sx={{ flexGrow: 0 }} spacing={4}>
       <Stepper
         alternativeLabel
         activeStep={step}

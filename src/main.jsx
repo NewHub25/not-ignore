@@ -6,14 +6,14 @@ import App from "./App.jsx";
 import { ThemeToggleProvider } from "./components/ThemeProvider.jsx";
 import { ErrorPage } from "./components/error-page.jsx";
 import { Index } from "./components/index.jsx";
-import { FormNewVideo } from "./components/form-new-video.jsx";
+import { FormNewVideo } from "./pages/form-page.jsx";
 import { Technologies } from "./components/technology.jsx";
 import { PageRoutes } from "./pages/page-routes.jsx";
 import "./index.css";
 
 import { loaderApp, loaderIndex } from "./logic/loaders.js";
 import { VideoRoom } from "./components/video-room.jsx";
-import { FormBasic } from "./components/form.jsx";
+import { FormBasic } from "./components/form-video.jsx";
 
 const router = createBrowserRouter([
   {

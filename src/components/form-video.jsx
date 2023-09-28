@@ -1,25 +1,28 @@
 import { Box, Button, FormControl, FormLabel, Input } from "@mui/joy";
 import { Form, Link, useLoaderData } from "react-router-dom";
 import CustomizedSteppers from "./customized-steppers";
-import ExampleChoiceChipCheckbox from "./choice-chip";
-import { useState } from "react";
+import ChoiceChipCheckbox from "./choice-chip";
+import { useContext, useState } from "react";
+import { ThemeContext } from "styled-components";
 
 export const FormBasic = () => {
   const CATEGORIES = useLoaderData();
   const [valueCheckbox, setValueCheckbox] = useState([]);
+  const toggleTheme = useContext(ThemeContext);
 
   return (
     <Box
       sx={{
-        outline: "1px solid #f0f",
+        height: "500px",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "space-between",
+        gap: 2,
         alignItems: "center",
       }}
     >
       <CustomizedSteppers step={0} />
       <Form
+        style={{ width: "100%" }}
         onSubmit={(event) => {
           event.preventDefault();
           const formElements = event.currentTarget.elements;
@@ -32,30 +35,41 @@ export const FormBasic = () => {
           console.log(valueCheckbox);
         }}
       >
-        <Box>
-          <ExampleChoiceChipCheckbox
+        <Box sx={{ mb: 1, textAlign: "right" }}>
+          <ChoiceChipCheckbox
+            sx={{
+              width: "100%",
+              boxSizing: "border-box",
+              marginBottom: 1,
+              textAlign: "left",
+            }}
             valueCheckbox={valueCheckbox}
             setValueCheckbox={setValueCheckbox}
             optionsToCheck={CATEGORIES.map((m) => m.title)}
           />
-          <Link
-            to="newcategory"
-            fontSize="sm"
-            href="#replace-with-a-link"
-            fontWeight="lg"
-          >
-            ¿Tienes una nueva categoría 😁?
-          </Link>
+          <Button variant="solid" color="neutral">
+            <Link
+              to="newcategory"
+              fontSize="sm"
+              href="#replace-with-a-link"
+              fontWeight="lg"
+            >
+              ¿Nueva categoría?
+            </Link>
+          </Button>
         </Box>
         <FormControl required>
-          <FormLabel>Dirección URL Youtube</FormLabel>
+          <FormLabel sx={{ color: toggleTheme.text }}>
+            Dirección URL Youtube
+          </FormLabel>
           <Input type="text" name="url" />
         </FormControl>
         <Box
           sx={{
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "center",
             alignItems: "center",
+            height: '3rem',
           }}
         >
           <Button type="submit">Continuar</Button>

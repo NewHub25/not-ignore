@@ -1,10 +1,14 @@
-export const CODE_IMAGES = [
-  "/assets/fetch-update.jpg",
-  "/assets/style-component.jpg",
-  "/assets/task-react.jpg",
+export const ASSETS_IMG = [
+  "/assets/code-random.jpg",
+  "/assets/code-top-camera.jpg",
+  "/assets/human-robot.jpg",
+  "/assets/programmer-css.jpg",
+  "/assets/programmer-park.jpg",
+  "/assets/programmer-room.jpg",
+  "/assets/source-code.jpg",
 ];
 
-export const images = [
+export const imagesPexels = [
   "https://images.pexels.com/photos/169647/pexels-photo-169647.jpeg?auto=compress&cs=tinysrgb&w=600",
   "https://images.pexels.com/photos/313782/pexels-photo-313782.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
   "https://images.pexels.com/photos/773471/pexels-photo-773471.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",

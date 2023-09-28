@@ -1,16 +1,13 @@
 import CarouselList from "./carousel-list";
 import { useLoaderData } from "react-router-dom";
 import { CarouselMedia } from "./carousel-media";
-import { CODE_IMAGES } from "./../utils/source-images.js";
+import { ASSETS_IMG } from "./../utils/source-images.js";
 export const Index = () => {
   const CATEGORIES = useLoaderData();
 
   return (
     <>
-      <CarouselMedia
-        images={CODE_IMAGES}
-        sx={{ margin: "3rem auto 3rem", width: "500px", height: "400px" }}
-      />
+      <CarouselMedia images={ASSETS_IMG} />
       {CATEGORIES &&
         CATEGORIES.map(({ content, layer, title }) => (
           <CarouselList

@@ -92,10 +92,13 @@ export const CarouselMedia = ({ images, sx }) => {
           position: "absolute",
           bottom: 0,
           display: "flex",
+          justifyContent: "center",
           alignItems: "center",
-          gap: 5,
+          gap: 10,
           height: 20,
           width: "100%",
+          boxSizing: "border-box",
+          padding: "0 3rem",
         }}
       >
         {images.map((_, index) => (
@@ -112,6 +115,7 @@ export const CarouselMedia = ({ images, sx }) => {
               backgroundColor:
                 currentIndex === index ? toggleTheme.principal : "#eee7",
               cursor: "pointer",
+              borderRadius: 5,
             }}
             onClick={() => handleSelectClick(index)}
           ></motion.div>
@@ -129,7 +133,7 @@ export const CarouselMedia = ({ images, sx }) => {
           padding: 50,
           textWrap: "balance",
           pointerEvents: "none",
-          textShadow: '5px 5px 2px #0090de50'
+          textShadow: "5px 5px 2px #0090de50",
         }}
       >
         Aprende y crea

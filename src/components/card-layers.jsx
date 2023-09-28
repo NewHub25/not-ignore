@@ -26,14 +26,23 @@ export default function CardLayers3d({ contents, sx }) {
         "& > div, & > div > div": {
           transition: "inherit",
         },
+        "& > div": {
+          transform: "rotateY(40deg)",
+          "& > div:nth-of-type(1)": {
+            transform: "scaleY(0.9) translate3d(20px, 20px, 100px)",
+          },
+          "& > div:nth-of-type(2)": {
+            transform: "scaleY(0.8) translate3d(45px, 40px, 100px)",
+          },
+        },
         "&:hover": {
           "& > div": {
-            transform: "rotateY(40deg)",
+            transform: "none",
             "& > div:nth-of-type(1)": {
-              transform: "scaleY(0.9) translate3d(20px, 20px, 100px)",
+              transform: "none",
             },
             "& > div:nth-of-type(2)": {
-              transform: "scaleY(0.8) translate3d(45px, 40px, 100px)",
+              transform: "none",
             },
           },
         },

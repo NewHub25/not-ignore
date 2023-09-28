@@ -1,11 +1,8 @@
 import { useRef } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Outlet, useLoaderData } from "react-router-dom";
 import { useMediaQuery } from "@mui/material";
-import CustomizedSteppers from "./customized-steppers";
 import CardLayers3d from "./card-layers";
 import extractVideoId from "../logic/extract-video-id";
-import { FormBasic } from "./form";
-import { Box } from "@mui/joy";
 
 export const FormNewVideo = () => {
   const CATEGORIES = useLoaderData();
@@ -33,10 +30,7 @@ export const FormNewVideo = () => {
           ...(matches ? { display: "block" } : { display: "none" }),
         }}
       />
-      <Box>
-        <CustomizedSteppers step={0} />
-        <FormBasic />
-      </Box>
+      <Outlet />
     </section>
   );
 };

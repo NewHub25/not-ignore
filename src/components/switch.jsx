@@ -5,7 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "styled-components";
 import { ThemeToggleContext } from "../contexts/theme-toggle-context";
 
-export default function ExampleThumbChild() {
+export default function SwitchThumbChild() {
   const toggleTheme = useContext(ThemeToggleContext);
   const themeContext = useContext(ThemeContext);
   const [isDark, setIsDark] = useState(themeContext.name === "dark");

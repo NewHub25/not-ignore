@@ -16,7 +16,7 @@ import { SettingsSuggest, Menu as MenuIcon } from "@mui/icons-material";
 import { ThemeContext } from "styled-components";
 
 import { nameProject } from "../utils/names";
-import ExampleThumbChild from "./switch";
+import SwitchThumbChild from "./switch";
 
 const pages = [
   { id: "categories", name: "categorías" },
@@ -154,7 +154,7 @@ function ResponsiveAppBar() {
               aria-haspopup="true"
               color="inherit"
             >
-              <ExampleThumbChild />
+              <SwitchThumbChild />
             </IconButton>
             <Tooltip title="Más acciones">
               <IconButton
@@ -214,7 +214,7 @@ function ResponsiveAppBar() {
                 aria-haspopup="true"
                 color="inherit"
               >
-                <ExampleThumbChild />
+                <SwitchThumbChild />
               </IconButton>
             </Menu>
           </Box>

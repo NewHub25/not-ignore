@@ -13,6 +13,7 @@ import "./index.css";
 
 import { loaderApp, loaderIndex } from "./logic/loaders.js";
 import { VideoRoom } from "./components/video-room.jsx";
+import { FormBasic } from "./components/form.jsx";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,17 @@ const router = createBrowserRouter([
             path: "newvideo",
             element: <FormNewVideo />,
             loader: loaderIndex,
+            children: [
+              {
+                index: true,
+                element: <FormBasic />,
+                loader: loaderIndex,
+              },
+              {
+                path: "newcategory",
+                element: <p>Nueva categoria jiji</p>,
+              },
+            ],
           },
           {
             path: "pages/:pageId",

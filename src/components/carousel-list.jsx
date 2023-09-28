@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useRef } from "react";
 import { ThemeContext } from "styled-components";
 import { Box, Card, Button, Chip } from "@mui/joy";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
@@ -11,18 +11,21 @@ import extractVideoId from "../logic/extract-video-id";
 
 export default function CarouselList({ content, layer, title: titleTech }) {
   const toggleTheme = useContext(ThemeContext);
-  const [idCarousel] = useState(createId(titleTech));
+  const idCarousel = useRef(createId(titleTech));
   const moveToleft = (isLeft) => {
+    // Hubo un problema con el ID, se usa entonces el atributo role
     const cardImgWidth = document
-      .querySelector(`#${idCarousel} > div`)
-      .getBoundingClientRect().width;
+      .querySelector(`[role="${idCarousel.current}"] > article`)
+      ?.getBoundingClientRect().width;
     document
-      .getElementById(idCarousel)
+      .querySelector(`[role="${idCarousel.current}"]`)
       .scrollBy((isLeft ? -1 : 1) * cardImgWidth, 0);
   };
 
   return (
     <Card
+      component="section"
+      role="carousel-list"
       sx={{
         // width: "min(900px, 90%)",
         width: "90%",
@@ -47,7 +50,8 @@ export default function CarouselList({ content, layer, title: titleTech }) {
         </Chip>
       </CustomDivider>
       <Box
-        id={idCarousel}
+        role={idCarousel.current}
+        component="div"
         sx={{
           display: "flex",
           gap: 1,
@@ -73,7 +77,7 @@ export default function CarouselList({ content, layer, title: titleTech }) {
             const { idYouTube } = extractVideoId(url);
             return (
               <MediaCard
-                key={url}
+                key={url + Math.random()}
                 author={author}
                 keywords={keywords}
                 title={title}

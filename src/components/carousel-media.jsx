@@ -129,6 +129,7 @@ export const CarouselMedia = ({ images, sx }) => {
           padding: 50,
           textWrap: "balance",
           pointerEvents: "none",
+          textShadow: '5px 5px 2px #0090de50'
         }}
       >
         Aprende y crea

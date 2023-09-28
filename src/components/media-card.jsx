@@ -6,15 +6,13 @@ import Typography from "@mui/joy/Typography";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import ViewInArIcon from "@mui/icons-material/ViewInAr";
 import { useMediaQuery } from "@mui/material";
-import { useRef } from "react";
-import extractVideoId from "../logic/extract-video-id";
 
 export default function MediaCard({ author, keywords, title, src, idVideo }) {
   const matches = useMediaQuery("(min-width: 992px)");
 
   return (
     <Card
-      component="div"
+      component="article"
       sx={{
         "--Card-radius": ".5rem",
         aspectRatio: "4/3",

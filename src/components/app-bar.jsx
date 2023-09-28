@@ -196,13 +196,13 @@ function ResponsiveAppBar() {
               onClose={handleCloseUserMenu}
             >
               {moreActions.map((moreAction) => (
-                <MenuItem key={moreAction} onClick={handleCloseUserMenu}>
-                  <Link to="newvideo">
+                <Link to="newvideo" key={moreAction}>
+                  <MenuItem onClick={handleCloseUserMenu}>
                     <Typography textAlign="center" component="span">
                       {moreAction}
                     </Typography>
-                  </Link>
-                </MenuItem>
+                  </MenuItem>
+                </Link>
               ))}
               <IconButton
                 sx={{

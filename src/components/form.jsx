@@ -1,4 +1,4 @@
-import { Box, Button, Checkbox, FormControl, FormLabel, Input } from "@mui/joy";
+import { Box, Button, FormControl, FormLabel, Input } from "@mui/joy";
 import { Form, Link, useLoaderData } from "react-router-dom";
 import ExampleChoiceChipCheckbox from "./choice-chip";
 import { useState } from "react";

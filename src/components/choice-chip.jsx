@@ -9,7 +9,8 @@ export default function ChoiceChipCheckbox({
   optionsToCheck,
   valueCheckbox,
   setValueCheckbox,
-  sx,
+  sx = {},
+  error = false,
 }) {
   return (
     <Sheet
@@ -70,6 +71,11 @@ export default function ChoiceChipCheckbox({
           ))}
         </List>
       </div>
+      {error && (
+        <Typography color="danger" level="body-sm" fontWeight="sm">
+          Elige al menos una categoría
+        </Typography>
+      )}{" "}
     </Sheet>
   );
 }

@@ -39,13 +39,12 @@ export const darkTheme = {
   text: neutral_3,
   principal: principal_2,
   name: "dark",
-  backgroundImage: "subtle-prism-black.svg",
+  backgroundImage: import.meta.resolve("/") + "subtle-prism-black.svg",
 };
-
 export const lightTheme = {
   body: neutral_3,
   text: neutral_1,
   principal: principal_1,
   name: "light",
-  backgroundImage: "subtle-prism-light.svg",
+  backgroundImage: import.meta.resolve("/") + "subtle-prism-light.svg",
 };

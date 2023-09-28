@@ -1,5 +1,5 @@
 import { Box, Button, FormControl, FormLabel, Input } from "@mui/joy";
-import { Form, Link, useLoaderData } from "react-router-dom";
+import { Form, Link, useLoaderData, useSubmit } from "react-router-dom";
 import CustomizedSteppers from "./customized-steppers";
 import ChoiceChipCheckbox from "./choice-chip";
 import { useContext, useState } from "react";
@@ -7,8 +7,10 @@ import { ThemeContext } from "styled-components";
 
 export const FormBasic = () => {
   const CATEGORIES = useLoaderData();
-  const [valueCheckbox, setValueCheckbox] = useState([]);
+  const [valueCheckboxs, setValueCheckboxs] = useState([]);
+  const [error, setError] = useState(false);
   const toggleTheme = useContext(ThemeContext);
+  const submit = useSubmit();
 
   return (
     <Box
@@ -25,54 +27,60 @@ export const FormBasic = () => {
         style={{ width: "100%" }}
         onSubmit={(event) => {
           event.preventDefault();
+          if (!valueCheckboxs.length) {
+            setError(true);
+            return;
+          }
           const formElements = event.currentTarget.elements;
           const data = {
             url: formElements.url.value,
-            password: formElements.password.value,
-            persistent: formElements.persistent.checked,
+            keywords: [...valueCheckboxs],
           };
+          const formDataObject = new FormData();
+          formDataObject.append("url", data.url);
+          formDataObject.append("keywords", data.keywords);
           alert(JSON.stringify(data, null, 2));
-          console.log(valueCheckbox);
+          submit(formDataObject, { method: "post" });
         }}
       >
-        <Box sx={{ mb: 1, textAlign: "right" }}>
-          <ChoiceChipCheckbox
-            sx={{
-              width: "100%",
-              boxSizing: "border-box",
-              marginBottom: 1,
-              textAlign: "left",
-            }}
-            valueCheckbox={valueCheckbox}
-            setValueCheckbox={setValueCheckbox}
-            optionsToCheck={CATEGORIES.map((m) => m.title)}
-          />
-          <Button variant="solid" color="neutral">
-            <Link
-              to="newcategory"
-              fontSize="sm"
-              href="#replace-with-a-link"
-              fontWeight="lg"
-            >
-              ¿Nueva categoría?
-            </Link>
-          </Button>
-        </Box>
         <FormControl required>
           <FormLabel sx={{ color: toggleTheme.text }}>
             Dirección URL Youtube
           </FormLabel>
           <Input type="text" name="url" />
         </FormControl>
+        <Box sx={{ mt: 2 }}>
+          <ChoiceChipCheckbox
+            sx={{
+              width: "100%",
+              boxSizing: "border-box",
+              marginBottom: 2,
+            }}
+            valueCheckbox={valueCheckboxs}
+            setValueCheckbox={setValueCheckboxs}
+            optionsToCheck={CATEGORIES.map((m) => m.title)}
+            error={error}
+          />
+        </Box>
         <Box
           sx={{
             display: "flex",
-            justifyContent: "center",
+            justifyContent: "space-between",
             alignItems: "center",
-            height: '3rem',
+            height: "3rem",
           }}
         >
           <Button type="submit">Continuar</Button>
+          <Button type="button">
+            <Link
+              to="newcategory"
+              fontSize="sm"
+              href="#replace-with-a-link"
+              fontWeight="lg"
+            >
+              Nueva categoría
+            </Link>
+          </Button>
         </Box>
       </Form>
     </Box>

@@ -11,7 +11,7 @@ import { Technologies } from "./components/technology.jsx";
 import { PageRoutes } from "./pages/page-routes.jsx";
 import "./index.css";
 
-import { loaderApp, loaderIndex } from "./logic/loaders.js";
+import { actionNewVideo, loaderApp, loaderIndex, loaderNewVideo } from "./logic/loaders.js";
 import { VideoRoom } from "./components/video-room.jsx";
 import { FormBasic } from "./components/form-video.jsx";
 
@@ -38,7 +38,8 @@ const router = createBrowserRouter([
               {
                 index: true,
                 element: <FormBasic />,
-                loader: loaderIndex,
+                action: actionNewVideo,
+                loader: loaderNewVideo,
               },
               {
                 path: "newcategory",

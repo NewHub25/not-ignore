@@ -11,7 +11,12 @@ import { Technologies } from "./components/technology.jsx";
 import { PageRoutes } from "./pages/page-routes.jsx";
 import "./index.css";
 
-import { actionNewVideo, loaderApp, loaderIndex, loaderNewVideo } from "./logic/loaders.js";
+import {
+  actionNewVideo,
+  loaderApp,
+  loaderIndex,
+  loaderNewVideo,
+} from "./logic/loaders.js";
 import { VideoRoom } from "./components/video-room.jsx";
 import { FormBasic } from "./components/form-basic.jsx";
 
@@ -58,6 +63,7 @@ const router = createBrowserRouter([
           {
             path: "room/:roomId",
             element: <VideoRoom />,
+            loader: loaderIndex,
           },
         ],
       },

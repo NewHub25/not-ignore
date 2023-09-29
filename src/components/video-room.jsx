@@ -14,8 +14,8 @@ export const VideoRoom = () => {
           title="YouTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
           style={{ width: "100%", height: "100%" }}
+          allowFullScreen="true"
         >
           Su navegador no soporta IFRAMES
         </iframe>

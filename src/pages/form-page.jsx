@@ -4,7 +4,7 @@ import { useMediaQuery } from "@mui/material";
 import CardLayers3d from "../components/card-layers";
 import extractVideoId from "../logic/extract-video-id";
 
-export const FormNewVideo = () => {
+export const PageFormVideo = () => {
   const CATEGORIES = useLoaderData();
   const matches = useMediaQuery("(min-width: 992px)");
   const arrayRefContent = useRef(

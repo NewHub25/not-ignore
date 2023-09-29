@@ -6,7 +6,7 @@ import App from "./App.jsx";
 import { ThemeToggleProvider } from "./components/ThemeProvider.jsx";
 import { ErrorPage } from "./components/error-page.jsx";
 import { Index } from "./components/index.jsx";
-import { FormNewVideo } from "./pages/form-page.jsx";
+import { PageFormVideo } from "./pages/form-page.jsx";
 import { Technologies } from "./components/technology.jsx";
 import { PageRoutes } from "./pages/page-routes.jsx";
 import "./index.css";
@@ -37,7 +37,7 @@ const router = createBrowserRouter([
           },
           {
             path: "newvideo",
-            element: <FormNewVideo />,
+            element: <PageFormVideo />,
             loader: loaderIndex,
             children: [
               {

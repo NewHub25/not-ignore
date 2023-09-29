@@ -15,6 +15,7 @@ import {
   Link,
   useLoaderData,
   useNavigate,
+  useNavigation,
   useSubmit,
 } from "react-router-dom";
 import CustomizedSteppers from "./customized-steppers";
@@ -74,6 +75,7 @@ export const FormBasic = () => {
 
 function FormStepOne() {
   const submit = useSubmit();
+  const navigation = useNavigation();
   const { CATEGORIES } = useLoaderData();
   const toggleTheme = useContext(ThemeContext);
   const [valueCheckboxes, setValueCheckboxes] = useContext(CheckBoxesContext);
@@ -81,7 +83,10 @@ function FormStepOne() {
 
   return (
     <Form
-      style={{ width: "100%" }}
+      style={{
+        width: "100%",
+        opacity: navigation.state === "loading" ? 0.5 : 1,
+      }}
       onSubmit={(event) => {
         event.preventDefault();
         if (!valueCheckboxes.length) {

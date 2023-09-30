@@ -1,79 +1,87 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
-import AspectRatio from "@mui/joy/AspectRatio";
-import Box from "@mui/joy/Box";
-import IconButton from "@mui/joy/IconButton";
-import Card from "@mui/joy/Card";
-import CardContent from "@mui/joy/CardContent";
-import Chip from "@mui/joy/Chip";
-import Divider from "@mui/joy/Divider";
-import Input from "@mui/joy/Input";
-import List from "@mui/joy/List";
-import ListSubheader from "@mui/joy/ListSubheader";
-import ListItem from "@mui/joy/ListItem";
-import ListItemDecorator from "@mui/joy/ListItemDecorator";
-import ListItemButton from "@mui/joy/ListItemButton";
-import Typography from "@mui/joy/Typography";
-import Sheet from "@mui/joy/Sheet";
-import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import SendIcon from "@mui/icons-material/Send";
-import ColorLensRoundedIcon from "@mui/icons-material/ColorLensRounded";
+import {
+  AspectRatio,
+  Box,
+  IconButton,
+  Card,
+  CardContent,
+  Divider,
+  List,
+  ListSubheader,
+  ListItem,
+  ListItemDecorator,
+  ListItemButton,
+  Typography,
+  Sheet,
+  Avatar,
+} from "@mui/joy";
+import {
+  FacebookRounded,
+  GitHub,
+  Wifi,
+  WifiOff,
+  LinkedIn,
+  Twitter,
+  LocalGroceryStore,
+} from "@mui/icons-material";
+import { ThemeContext } from "styled-components";
 
 export default function Footer() {
-  const [color, setColor] = useState("neutral");
+  const toggleTheme = useContext(ThemeContext);
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
+
+  useEffect(() => {
+    window.addEventListener("online", handleOnline);
+    window.addEventListener("offline", handleOffline);
+    return () => {
+      window.removeEventListener("online", handleOnline);
+      window.removeEventListener("offline", handleOffline);
+    };
+  }, []);
+
+  const handleOnline = () => {
+    setIsOnline(true);
+  };
+
+  const handleOffline = () => {
+    setIsOnline(false);
+  };
+
   return (
     <Sheet
       variant="solid"
-      color={color}
+      color="primary"
       invertedColors
       sx={{
-        ...(color !== "neutral" && {
-          bgcolor: `${color}.800`,
+        ...(toggleTheme.name === "dark" && {
+          bgcolor: "primary.800",
         }),
         flexGrow: 1,
         p: 2,
-        borderRadius: { xs: 0, sm: "sm" },
       }}
     >
       <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-        <IconButton
-          variant="soft"
-          size="sm"
-          onClick={() => {
-            const colors = [
-              "primary",
-              "neutral",
-              "danger",
-              "success",
-              "warning",
-            ];
-
-            const nextColor = colors.indexOf(color);
-            setColor(colors[nextColor + 1] ?? colors[0]);
-          }}
-        >
-          <ColorLensRoundedIcon fontSize="small" />
-        </IconButton>
+        {isOnline ? <Wifi fontSize="small" /> : <WifiOff fontSize="small" />}
         <Divider orientation="vertical" />
-        <IconButton variant="plain">
-          <FacebookRoundedIcon />
-        </IconButton>
-        <IconButton variant="plain">
-          <GitHubIcon />
-        </IconButton>
-        <Input
-          variant="soft"
-          placeholder="Type in your email"
-          type="email"
-          name="email"
-          endDecorator={
-            <IconButton variant="soft" aria-label="subscribe">
-              <SendIcon />
-            </IconButton>
-          }
-          sx={{ ml: "auto", display: { xs: "none", md: "flex" } }}
-        />
+        {[
+          {
+            href: "https://web.facebook.com/terrydaniel.ildefonsochagua",
+            decorator: <FacebookRounded />,
+          },
+          { href: "https://github.com/NewHub25", decorator: <GitHub /> },
+          {
+            href: "https://www.linkedin.com/in/terry-chagua-84a7a8252/",
+            decorator: <LinkedIn />,
+          },
+          { href: "https://twitter.com/@TerrySmart25", decorator: <Twitter /> },
+        ].map(({ href, decorator }) => {
+          return (
+            <a key={href} href={href} target="_blank" rel="noreferrer">
+              <IconButton variant="plain">{decorator}</IconButton>
+            </a>
+          );
+        })}
       </Box>
       <Divider sx={{ my: 2 }} />
       <Box
@@ -91,21 +99,21 @@ export default function Footer() {
           size="sm"
           sx={{
             flexDirection: { xs: "row", md: "column" },
-            minWidth: { xs: "100%", md: "auto" },
+            minWidth: { xs: "90%", md: "200px" },
             gap: 1,
           }}
         >
           <AspectRatio
-            ratio="21/9"
+            ratio="2/1.5"
             minHeight={80}
             sx={{ flexBasis: { xs: 200, md: "initial" } }}
           >
-            <img alt="" src="/vite.svg" />
+            <img alt="" src="/future.gif" style={{ objectFit: "cover" }} />
           </AspectRatio>
           <CardContent>
-            <Typography level="body-sm">Intro to the MUI ecosystem</Typography>
+            <Typography level="body-sm">Sé parte de esto</Typography>
             <Typography level="body-xs" sx={{ mb: 0.5 }}>
-              MUI blog
+              Añade un video de programación
             </Typography>
           </CardContent>
         </Card>
@@ -116,69 +124,101 @@ export default function Footer() {
           sx={{ flexGrow: 0, "--ListItem-radius": "8px" }}
         >
           <ListItem nested sx={{ width: { xs: "50%", md: 140 } }}>
-            <ListSubheader>Sitemap</ListSubheader>
+            <ListSubheader>Enlaces</ListSubheader>
             <List>
-              <ListItem>
-                <ListItemButton>Services</ListItemButton>
-              </ListItem>
-              <ListItem>
-                <ListItemButton>Blog</ListItemButton>
-              </ListItem>
-              <ListItem>
-                <ListItemButton>Contact us</ListItemButton>
-              </ListItem>
+              {[
+                {
+                  href: "https://newhub25.github.io/portafolio-publico-2023/",
+                  title: "Portafolio",
+                  decorator: (
+                    <Avatar
+                      sx={{ ml: "auto" }}
+                      size="sm"
+                      alt="Terry"
+                      src="https://avatars.githubusercontent.com/u/103373722?v=4"
+                    />
+                  ),
+                },
+                {
+                  href: "https://newhub25.github.io/ecommerce/",
+                  title: "Ecommerce",
+                  decorator: (
+                    <LocalGroceryStore sx={{ ml: "auto" }} size="sm" />
+                  ),
+                },
+              ].map(({ href, title, decorator }) => {
+                return (
+                  <ListItem key={href}>
+                    <a
+                      style={{ width: "min(80%, 150px)" }}
+                      href={href}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <ListItemButton>
+                        {title}
+                        {decorator}
+                      </ListItemButton>
+                    </a>
+                  </ListItem>
+                );
+              })}
             </List>
           </ListItem>
           <ListItem nested sx={{ width: { xs: "50%", md: 180 } }}>
-            <ListSubheader>Product</ListSubheader>
-            <List sx={{ "--ListItemDecorator-size": "32px" }}>
-              <ListItem>
-                <ListItemButton>
-                  <ListItemDecorator>
-                    <img alt="" src="/React.svg" width="24" />
-                  </ListItemDecorator>
-                  MUI Core
-                </ListItemButton>
-              </ListItem>
-              <ListItem>
-                <ListItemButton>
-                  <ListItemDecorator>
-                    <img alt="" src="/React.svg" width="24" />
-                  </ListItemDecorator>
-                  MUI X
-                </ListItemButton>
-              </ListItem>
-              <ListItem>
-                <ListItemButton>
-                  <ListItemDecorator>
-                    <img alt="" src="/React.svg" width="24" />
-                  </ListItemDecorator>
-                  MUI Toolpad
-                  <Chip
-                    variant="soft"
-                    size="sm"
-                    sx={{ minHeight: 20, fontSize: "xs2", ml: "auto" }}
-                  >
-                    BETA
-                  </Chip>
-                </ListItemButton>
-              </ListItem>
-              <ListItem>
-                <ListItemButton>
-                  <ListItemDecorator>
-                    <img alt="" src="/icon.svg" width="24" />
-                  </ListItemDecorator>
-                  Design kits
-                </ListItemButton>
-              </ListItem>
-              <ListItem>
-                <ListItemButton>
-                  <ListItemDecorator>
-                    <img alt="" src="/icon.svg" width="24" />
-                  </ListItemDecorator>
-                  Templates
-                </ListItemButton>
-              </ListItem>
+            <ListSubheader>Sobre esta web</ListSubheader>
+            <List sx={{ "--ListItemDecorator-size": "40px" }}>
+              {[
+                {
+                  href: "https://es.react.dev/",
+                  title: "React",
+                  decorator: <img alt="react" src="/react.svg" width="24" />,
+                },
+                {
+                  href: "https://mui.com/",
+                  title: "MUI",
+                  decorator: <img alt="mui" src="/mui.svg" width="24" />,
+                },
+                {
+                  href: "https://vitejs.dev/",
+                  title: "Vite",
+                  decorator: <img alt="vite" src="/vite.svg" width="24" />,
+                },
+                {
+                  href: "https://styled-components.com/",
+                  title: "Styled Components",
+                  decorator: (
+                    <img
+                      alt="Styled Components"
+                      src="/styled-components.jpg"
+                      width="40"
+                    />
+                  ),
+                },
+                {
+                  href: "https://git-scm.com/",
+                  title: "GIT",
+                  decorator: <img alt="GIT" src="/git.svg" width="24" />,
+                },
+              ].map(({ href, title, decorator }) => {
+                return (
+                  <ListItem key={href}>
+                    <a
+                      style={{ width: "100%" }}
+                      href={href}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <ListItemButton>
+                        <IconButton variant="solid" sx={{ mr: 1 }}>
+                          {decorator}
+                        </IconButton>
+                        {title}
+                      </ListItemButton>
+                    </a>
+                  </ListItem>
+                );
+              })}
             </List>
           </ListItem>
         </List>

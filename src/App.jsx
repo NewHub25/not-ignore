@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <ResponsiveAppBar />
-      {/* <Outlet /> */}
+      <Outlet />
       <Footer />
     </>
   );

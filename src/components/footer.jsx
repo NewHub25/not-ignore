@@ -10,7 +10,6 @@ import {
   List,
   ListSubheader,
   ListItem,
-  ListItemDecorator,
   ListItemButton,
   Typography,
   Sheet,
@@ -108,7 +107,12 @@ export default function Footer() {
             minHeight={80}
             sx={{ flexBasis: { xs: 200, md: "initial" } }}
           >
-            <img alt="" src="/future.gif" style={{ objectFit: "cover" }} />
+            <img
+              alt=""
+              src="/future.gif"
+              style={{ objectFit: "cover" }}
+              loading="lazy"
+            />
           </AspectRatio>
           <CardContent>
             <Typography level="body-sm">Sé parte de esto</Typography>
@@ -166,23 +170,27 @@ export default function Footer() {
             </List>
           </ListItem>
           <ListItem nested sx={{ width: { xs: "50%", md: 180 } }}>
-            <ListSubheader>Sobre esta web</ListSubheader>
+            <ListSubheader>Construido con</ListSubheader>
             <List sx={{ "--ListItemDecorator-size": "40px" }}>
               {[
                 {
                   href: "https://es.react.dev/",
                   title: "React",
-                  decorator: <img alt="react" src="/react.svg" width="24" />,
+                  decorator: (
+                    <img
+                      alt="react"
+                      src="/react.svg"
+                      width="24"
+                      loading="lazy"
+                    />
+                  ),
                 },
                 {
                   href: "https://mui.com/",
                   title: "MUI",
-                  decorator: <img alt="mui" src="/mui.svg" width="24" />,
-                },
-                {
-                  href: "https://vitejs.dev/",
-                  title: "Vite",
-                  decorator: <img alt="vite" src="/vite.svg" width="24" />,
+                  decorator: (
+                    <img alt="mui" src="/mui.svg" width="24" loading="lazy" />
+                  ),
                 },
                 {
                   href: "https://styled-components.com/",
@@ -192,13 +200,23 @@ export default function Footer() {
                       alt="Styled Components"
                       src="/styled-components.jpg"
                       width="40"
+                      loading="lazy"
                     />
+                  ),
+                },
+                {
+                  href: "https://vitejs.dev/",
+                  title: "Vite",
+                  decorator: (
+                    <img alt="vite" src="/vite.svg" width="24" loading="lazy" />
                   ),
                 },
                 {
                   href: "https://git-scm.com/",
                   title: "GIT",
-                  decorator: <img alt="GIT" src="/git.svg" width="24" />,
+                  decorator: (
+                    <img alt="GIT" src="/git.svg" width="24" loading="lazy" />
+                  ),
                 },
               ].map(({ href, title, decorator }) => {
                 return (

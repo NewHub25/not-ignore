@@ -179,7 +179,7 @@ export default function Footer() {
                   decorator: (
                     <img
                       alt="react"
-                      src="/react.svg"
+                      src="/React.svg"
                       width="24"
                       loading="lazy"
                     />

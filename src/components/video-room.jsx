@@ -1,7 +1,15 @@
-import { useLoaderData, useParams } from "react-router-dom";
+import { Link, useLoaderData, useParams } from "react-router-dom";
 import "./../css/computer.css";
-import { Box, Card, Typography } from "@mui/joy";
-import { useRef } from "react";
+import {
+  Box,
+  Button,
+  ButtonGroup,
+  Card,
+  Stack,
+  Tooltip,
+  Typography,
+} from "@mui/joy";
+import { useEffect, useRef } from "react";
 import extractVideoId from "../logic/extract-video-id";
 import { AccountBox, BarChart } from "@mui/icons-material";
 import { useMediaQuery } from "@mui/material";
@@ -61,10 +69,7 @@ export const VideoRoom = () => {
         <div className="computer-stand"></div>
         <div className="computer-stand-bottom"></div>
       </div>
-      <Card
-        variant="outlined"
-        // sx={{ width: "70vw", mx: "auto" }}
-      >
+      <Card variant="outlined">
         <Typography
           level="h1"
           startDecorator={<AccountBox fontSize="large" color="primary" />}
@@ -81,47 +86,32 @@ export const VideoRoom = () => {
           {uniqueData.current.title}
         </Typography>
         <Typography>{uniqueData.current.description}</Typography>
+        <Stack spacing={2} alignItems="center">
+          Temas relacionados:
+          <ButtonGroup
+            variant="outlined"
+            size="md"
+            aria-label="outlined button group"
+          >
+            {uniqueData.current.keywords.map((keyword) => {
+              return (
+                <Tooltip
+                  key={keyword}
+                  title={`Aprende más de ${keyword} en YouTube`}
+                  color="primary"
+                  variant="soft"
+                >
+                  <Link
+                    to={`https://www.youtube.com/results?search_query=${keyword}`}
+                  >
+                    <Button>{keyword}</Button>
+                  </Link>
+                </Tooltip>
+              );
+            })}
+          </ButtonGroup>
+        </Stack>
       </Card>
     </Box>
   );
 };
-
-// function Computer() {
-
-//   return (
-//     <div className="computer-container">
-//       <div className="computer-monitor">
-//         <iframe
-//           // width="560"
-//           // height="315"
-//           src={`https://www.youtube.com/embed/${roomId}?si=e3UBTa8XcDFqBKkJ`}
-//           title="YouTube video player"
-//           frameBorder="0"
-//           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-//           style={{ width: "100%", height: "100%" }}
-//           allowFullScreen="true"
-//         >
-//           Su navegador no soporta IFRAMES
-//         </iframe>
-//       </div>
-//       <div className="computer-bottom"></div>
-//       <div className="computer-stand"></div>
-//       <div className="computer-stand-bottom"></div>
-//     </div>
-//   );
-// }
-// function TypographyBasics() {
-//   return (
-//     <Card variant="outlined" sx={{ maxWidth: 400 }}>
-//       <Typography level="h1">National Parks</Typography>
-//       <Typography level="h2" fontSize="xl" sx={{ mb: 0.5 }}>
-//         Yosemite National Park
-//       </Typography>
-//       <Typography>
-//         Yosemite National Park is a national park spanning 747,956 acres
-//         (1,169.4 sq mi; 3,025.2 km2) in the western Sierra Nevada of Central
-//         California.
-//       </Typography>
-//     </Card>
-//   );
-// }

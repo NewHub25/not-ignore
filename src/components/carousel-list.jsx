@@ -77,7 +77,7 @@ export default function CarouselList({ content, layer, title: titleTech }) {
             const { idYouTube } = extractVideoId(url);
             return (
               <MediaCard
-                key={url + Math.random()}
+                key={url + crypto.randomUUID()}
                 author={author}
                 keywords={keywords}
                 title={title}

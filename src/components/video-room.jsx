@@ -9,7 +9,7 @@ import {
   Tooltip,
   Typography,
 } from "@mui/joy";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import extractVideoId from "../logic/extract-video-id";
 import { AccountBox, BarChart } from "@mui/icons-material";
 import { useMediaQuery } from "@mui/material";

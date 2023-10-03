@@ -19,6 +19,7 @@ import {
 } from "./logic/loaders.js";
 import { VideoRoom } from "./components/video-room.jsx";
 import { FormBasic } from "./components/form-basic.jsx";
+import { FormNewCategory } from "./components/form-new-category.jsx";
 
 const router = createBrowserRouter([
   {
@@ -48,7 +49,8 @@ const router = createBrowserRouter([
               },
               {
                 path: "newcategory",
-                element: <p>Nueva categoria jiji</p>,
+                loader: loaderNewVideo,
+                element: <FormNewCategory />,
               },
             ],
           },

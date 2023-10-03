@@ -7,6 +7,7 @@ import {
   FormControl,
   FormLabel,
   Input,
+  LinearProgress,
   Typography,
 } from "@mui/joy";
 import { AssignmentTurnedIn } from "@mui/icons-material";
@@ -14,7 +15,6 @@ import {
   Form,
   Link,
   useLoaderData,
-  useNavigate,
   useNavigation,
   useSubmit,
 } from "react-router-dom";
@@ -26,11 +26,8 @@ import {
   CheckBoxesContext,
   ErrorCheckboxContext,
 } from "../contexts/form-context";
-import {
-  deleteLocalFormVideo,
-  getLocalFormVideo,
-} from "../logic/local-storage";
-import extractVideoId from "../logic/extract-video-id";
+import { deleteLocalFormVideo } from "../logic/local-storage";
+import { pushingOneVideoLocal } from "../logic/fetch";
 
 const setpsComponents = {
   0: <FormStepOne />,
@@ -41,6 +38,7 @@ export const FormBasic = () => {
   const { storage } = useLoaderData();
   const [valueCheckboxes, setValueCheckboxes] = useState([]);
   const [errorCheckbox, setErrorCheckboxes] = useState(false);
+  const navigation = useNavigation();
 
   let stepCount = 0;
   if (["url", "keywords"].every((k) => storage?.[k])) {
@@ -52,6 +50,7 @@ export const FormBasic = () => {
 
   return (
     <Box
+      component="main"
       sx={{
         height: "500px",
         width: "min(500px, 90vw)",
@@ -59,6 +58,9 @@ export const FormBasic = () => {
         flexDirection: "column",
         gap: 2,
         alignItems: "center",
+        "& > *:last-child": {
+          opacity: navigation.state === "loading" ? 0.5 : 1,
+        },
       }}
     >
       <CustomizedSteppers step={stepCount} />
@@ -66,7 +68,12 @@ export const FormBasic = () => {
         <ErrorCheckboxContext.Provider
           value={[errorCheckbox, setErrorCheckboxes]}
         >
-          {setpsComponents[stepCount]}
+          <Box component="article">
+            {navigation.state === "loading" && (
+              <LinearProgress color="primary" variant="solid" thickness={3} />
+            )}
+            {setpsComponents[stepCount]}
+          </Box>
         </ErrorCheckboxContext.Provider>
       </CheckBoxesContext.Provider>
     </Box>
@@ -75,7 +82,6 @@ export const FormBasic = () => {
 
 function FormStepOne() {
   const submit = useSubmit();
-  const navigation = useNavigation();
   const { CATEGORIES } = useLoaderData();
   const toggleTheme = useContext(ThemeContext);
   const [valueCheckboxes, setValueCheckboxes] = useContext(CheckBoxesContext);
@@ -85,7 +91,6 @@ function FormStepOne() {
     <Form
       style={{
         width: "100%",
-        opacity: navigation.state === "loading" ? 0.5 : 1,
       }}
       onSubmit={(event) => {
         event.preventDefault();
@@ -128,7 +133,7 @@ function FormStepOne() {
         }}
       >
         <Button type="submit">Continuar</Button>
-        <Button type="button">
+        <Button type="button" variant="soft">
           <Link
             to="newcategory"
             fontSize="sm"
@@ -149,7 +154,9 @@ function FormStepTwo() {
 
   return (
     <Form
-      style={{ width: "100%" }}
+      style={{
+        width: "100%",
+      }}
       onSubmit={(event) => {
         event.preventDefault();
         const formElements = event.currentTarget.elements;
@@ -187,17 +194,20 @@ function FormStepTwo() {
 }
 
 function EndForm() {
-  const navigate = useNavigate();
+  const { CATEGORIES, storage } = useLoaderData();
+  const submit = useSubmit();
 
   return (
     <Form
-      onSubmit={(e) => {
+      onSubmit={async (e) => {
         e.preventDefault();
-        const dataEnd = getLocalFormVideo();
-        dataEnd.keywords = dataEnd.keywords.split(",");
-        console.log({ dataEnd });
+        storage.keywords = Array.isArray(storage.keywords)
+          ? storage.keywords
+          : storage.keywords.split(",");
+        const { data, url, ID } = pushingOneVideoLocal(CATEGORIES, storage);
         deleteLocalFormVideo();
-        navigate(`/room/${extractVideoId(dataEnd.url).idYouTube}`);
+        console.log({ data, url, ID });
+        submit({ data, url, ID }, { method: "PUT" });
       }}
     >
       <Box

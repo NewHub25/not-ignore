@@ -11,6 +11,7 @@ export default function ChoiceChipCheckbox({
   setValueCheckbox,
   sx = {},
   error = false,
+  title = "Elige una categoría",
 }) {
   return (
     <Sheet
@@ -18,7 +19,7 @@ export default function ChoiceChipCheckbox({
       sx={{ width: 360, p: 2, borderRadius: "sm", ...sx }}
     >
       <Typography id="rank" level="body-sm" fontWeight="lg" sx={{ mb: 1.5 }}>
-        Elige una categoría
+        {title}
       </Typography>
       <div role="group" aria-labelledby="rank">
         <List

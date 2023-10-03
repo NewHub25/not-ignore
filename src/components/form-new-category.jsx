@@ -36,7 +36,7 @@ export const FormNewCategory = () => {
     <Box
       sx={{
         height: "600px",
-        width: "min(500px, 90vw)",
+        width: "min(400px, 90vw)",
         display: "flex",
         flexDirection: "column",
         gap: 2,

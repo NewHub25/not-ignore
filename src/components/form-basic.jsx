@@ -7,6 +7,7 @@ import {
   FormControl,
   FormLabel,
   Input,
+  LinearProgress,
   Typography,
 } from "@mui/joy";
 import { AssignmentTurnedIn } from "@mui/icons-material";
@@ -25,9 +26,7 @@ import {
   CheckBoxesContext,
   ErrorCheckboxContext,
 } from "../contexts/form-context";
-import {
-  deleteLocalFormVideo,
-} from "../logic/local-storage";
+import { deleteLocalFormVideo } from "../logic/local-storage";
 import { pushingOneVideoLocal } from "../logic/fetch";
 
 const setpsComponents = {
@@ -40,6 +39,7 @@ export const FormBasic = () => {
   const [valueCheckboxes, setValueCheckboxes] = useState([]);
   const [errorCheckbox, setErrorCheckboxes] = useState(false);
   const navigation = useNavigation();
+
   let stepCount = 0;
   if (["url", "keywords"].every((k) => storage?.[k])) {
     stepCount = 1;
@@ -50,6 +50,7 @@ export const FormBasic = () => {
 
   return (
     <Box
+      component="main"
       sx={{
         height: "500px",
         width: "min(500px, 90vw)",
@@ -67,7 +68,12 @@ export const FormBasic = () => {
         <ErrorCheckboxContext.Provider
           value={[errorCheckbox, setErrorCheckboxes]}
         >
-          {setpsComponents[stepCount]}
+          <Box component="article">
+            {navigation.state === "loading" && (
+              <LinearProgress color="primary" variant="solid" thickness={3} />
+            )}
+            {setpsComponents[stepCount]}
+          </Box>
         </ErrorCheckboxContext.Provider>
       </CheckBoxesContext.Provider>
     </Box>
@@ -127,7 +133,7 @@ function FormStepOne() {
         }}
       >
         <Button type="submit">Continuar</Button>
-        <Button type="button">
+        <Button type="button" variant="soft">
           <Link
             to="newcategory"
             fontSize="sm"

@@ -27,13 +27,15 @@ export default function CarouselList({ content, layer, title: titleTech }) {
       component="section"
       role="carousel-list"
       sx={{
-        // width: "min(900px, 90%)",
         width: "90%",
         position: "relative",
         border: "none",
         background: "transparent",
         margin: "0 auto 3rem",
         padding: 0,
+        "&:hover .MuiButton-root": {
+          opacity: 1,
+        },
       }}
     >
       <CustomDivider sx={{ height: "30px" }}>
@@ -110,6 +112,9 @@ const ButtonUser = ({ dir, handleClick }) => {
         borderRadius: "50%",
         aspectRatio: "1/1",
         width: "3rem",
+        opacity: 0,
+        backgroundColor: "#eee",
+        transition: "all 0.4s",
         "&:hover": {
           backgroundColor: toggleTheme.body,
         },

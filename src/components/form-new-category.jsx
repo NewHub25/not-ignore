@@ -2,15 +2,11 @@ import {
   Autocomplete,
   Box,
   Button,
-  Card,
-  CardContent,
-  CardCover,
   FormControl,
   FormLabel,
   Input,
-  Typography,
 } from "@mui/joy";
-import { AssignmentTurnedIn, Dashboard } from "@mui/icons-material";
+import { FindInPage } from "@mui/icons-material";
 import {
   Form,
   Link,
@@ -21,8 +17,6 @@ import {
 import ChoiceChipCheckbox from "./choice-chip";
 import { useContext, useRef, useState } from "react";
 import { ThemeContext } from "styled-components";
-import { deleteLocalFormVideo } from "../logic/local-storage";
-import { pushingOneVideoLocal } from "../logic/fetch";
 import { languages_frameworks } from "../utils/options-to-select";
 import RadioOptions from "./radio-options";
 
@@ -49,7 +43,10 @@ export const FormNewCategory = () => {
         gap: 2,
         alignItems: "center",
         "& > *:last-child": {
-          opacity: navigation.state === "loading" ? 0.5 : 1,
+          opacity:
+            navigation.state === "loading" || navigation.state === "submitting"
+              ? 0.5
+              : 1,
         },
       }}
     >
@@ -79,9 +76,8 @@ export const FormNewCategory = () => {
             layer: oneCheckValue,
             title: newCategories[0],
           };
-
-          // submit(formDataObject, { method: "post" });
-          console.log(JSON.stringify(bodyPOST, null, 1));
+          // Si no se encapsula en un objeto, se envía como '[object Object]'
+          submit({ data: JSON.stringify(bodyPOST) }, { method: "post" });
         }}
       >
         <RadioOptions setOneCheckValue={setOneCheckValue} />
@@ -91,13 +87,13 @@ export const FormNewCategory = () => {
         <Autocomplete
           required={newCategories.length ? false : true}
           size="lg"
-          placeholder="Categorías top"
+          placeholder="Elige primero el más relevante"
           options={languages_frameworks.filter((f) => {
             return !currentCategories.current.includes(
               f.toLowerCase().trim().match(/\w+/)[0]
             );
           })}
-          startDecorator={<Dashboard />}
+          startDecorator={<FindInPage color="info" />}
           multiple
           value={newCategories}
           onChange={(event, newValue) => {
@@ -108,7 +104,7 @@ export const FormNewCategory = () => {
             setInputNewCategory(newInputValue);
           }}
           sx={{ width: "100%", mb: 1 }}
-          limitTags={2}
+          limitTags={3}
         />
         <ChoiceChipCheckbox
           title="Categorías guardadas (opcional)"
@@ -150,6 +146,11 @@ export const FormNewCategory = () => {
           }}
         >
           <Button type="submit">Agregar</Button>
+          <Link to="../">
+            <Button type="button" variant="soft">
+              Atrás
+            </Button>
+          </Link>
         </Box>
       </Form>
     </Box>

@@ -27,7 +27,7 @@ import {
   ErrorCheckboxContext,
 } from "../contexts/form-context";
 import { deleteLocalFormVideo } from "../logic/local-storage";
-import { pushingOneVideoLocal } from "../logic/fetch";
+import { updateStoreOneVideoLocal } from "../logic/fetch";
 
 const setpsComponents = {
   0: <FormStepOne />,
@@ -155,7 +155,7 @@ function FormStepTwo() {
   return (
     <Form
       style={{
-        width: "100%",
+        width: "min(400px, 90%)",
       }}
       onSubmit={(event) => {
         event.preventDefault();
@@ -204,7 +204,7 @@ function EndForm() {
         storage.keywords = Array.isArray(storage.keywords)
           ? storage.keywords
           : storage.keywords.split(",");
-        const { data, url, ID } = pushingOneVideoLocal(CATEGORIES, storage);
+        const { data, url, ID } = updateStoreOneVideoLocal(CATEGORIES, storage);
         deleteLocalFormVideo();
         console.log({ data, url, ID });
         submit({ data, url, ID }, { method: "PUT" });

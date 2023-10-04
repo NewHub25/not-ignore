@@ -1,5 +1,5 @@
 import { redirect } from "react-router-dom";
-import { fetchData } from "./fetch";
+import { fetchData, fetchNewCategory } from "./fetch";
 import { getSession, saveSession } from "./save-session";
 import { saveLocalFormVideo, getLocalFormVideo } from "./local-storage";
 import extractVideoId from "./extract-video-id";
@@ -41,6 +41,7 @@ export const actionNewVideo = async ({ request }) => {
       return redirect(`/room/${extractVideoId(url).idYouTube}`);
     } catch (error) {
       console.warn(error.message);
+      return redirect("/");
     }
   }
 };
@@ -51,4 +52,19 @@ export const loaderNewVideo = async () => {
   return CATEGORIES
     ? { CATEGORIES, storage }
     : { CATEGORIES: await fetchData(), storage };
+};
+
+export const actionNewCategory = async ({ request }) => {
+  const formData = await request.formData();
+  let objTempData = Object.fromEntries(formData);
+  try {
+    await fetchNewCategory(objTempData.data);
+    const { data } = objTempData;
+    return redirect(
+      `/room/${extractVideoId(JSON.parse(data).content[0].url).idYouTube}`
+    );
+  } catch (error) {
+    console.log(error);
+    return redirect("/");
+  }
 };

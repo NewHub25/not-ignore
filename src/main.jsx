@@ -12,6 +12,7 @@ import { PageRoutes } from "./pages/page-routes.jsx";
 import "./index.css";
 
 import {
+  actionNewCategory,
   actionNewVideo,
   loaderApp,
   loaderIndex,
@@ -51,6 +52,7 @@ const router = createBrowserRouter([
                 path: "newcategory",
                 loader: loaderNewVideo,
                 element: <FormNewCategory />,
+                action: actionNewCategory,
               },
             ],
           },

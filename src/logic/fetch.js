@@ -12,7 +12,7 @@ export async function fetchData() {
   }
 }
 
-export function pushingOneVideoLocal(dataSession, newData) {
+export function updateStoreOneVideoLocal(dataSession, newData) {
   const greatDataTemp = [...dataSession];
   const ID = greatDataTemp.find(
     (category) => category.title === newData.keywords[0]
@@ -41,4 +41,21 @@ export function pushingOneVideoLocal(dataSession, newData) {
     url: newData.url,
     ID,
   };
+}
+
+export async function fetchNewCategory(newCategoryJSON) {
+  try {
+    const f = await fetch(import.meta.env.VITE_ID_CATEGORIES, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: newCategoryJSON,
+    });
+    const json = await f.json();
+    return { json };
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
 }

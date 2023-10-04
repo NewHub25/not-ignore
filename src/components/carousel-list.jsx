@@ -68,26 +68,20 @@ export default function CarouselList({ content, layer, title: titleTech }) {
           "::-webkit-scrollbar": { display: "none" },
         }}
       >
-        {content.map(
-          ({
-            author,
-            keywords,
-            title,
-            url,
-          }) => {
-            const { idYouTube } = extractVideoId(url);
-            return (
-              <MediaCard
-                key={url + crypto.randomUUID()}
-                author={author}
-                keywords={keywords}
-                title={title}
-                src={`https://i3.ytimg.com/vi/${idYouTube}/maxresdefault.jpg`}
-                idVideo={idYouTube}
-              />
-            );
-          }
-        )}
+        {content.map(({ author, keywords, title, url }) => {
+          const { idYouTube } = extractVideoId(url);
+          if (!idYouTube) return;
+          return (
+            <MediaCard
+              key={url + crypto.randomUUID()}
+              author={author}
+              keywords={keywords}
+              title={title}
+              src={`https://i3.ytimg.com/vi/${idYouTube}/maxresdefault.jpg`}
+              idVideo={idYouTube}
+            />
+          );
+        })}
       </Box>
       <ButtonUser dir="left" handleClick={() => moveToleft(true)} />
       <ButtonUser dir="right" handleClick={() => moveToleft(false)} />

@@ -20,7 +20,6 @@ import SwitchThumbChild from "./switch";
 
 const pages = [
   { id: "categories", name: "categorías" },
-  { id: "trend", name: "tendencias" },
 ];
 const moreActions = ["Agregar nuevo video"];
 

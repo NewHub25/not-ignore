@@ -90,7 +90,7 @@ export const FormNewCategory = () => {
               f.toLowerCase().trim().match(/\w+/)[0]
             );
           })}
-          startDecorator={<Dashboard />}
+          startDecorator={<Dashboard color="info" />}
           multiple
           value={newCategories}
           onChange={(event, newValue) => {

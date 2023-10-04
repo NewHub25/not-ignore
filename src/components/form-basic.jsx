@@ -86,6 +86,7 @@ function FormStepOne() {
   const toggleTheme = useContext(ThemeContext);
   const [valueCheckboxes, setValueCheckboxes] = useContext(CheckBoxesContext);
   const [errorCheckbox, setErrorCheckboxes] = useContext(ErrorCheckboxContext);
+  const [errorUrl, setErrorUrl] = useState(false);
 
   return (
     <Form
@@ -98,6 +99,13 @@ function FormStepOne() {
           setErrorCheckboxes(true);
           return;
         }
+        if (
+          !/https:\/\/(www.youtube.com|youtu.be)\//.test(
+            event.currentTarget.elements.url.value
+          )
+        ) {
+          setErrorUrl(true);
+        }
         const formElements = event.currentTarget.elements;
         const formDataObject = new FormData();
         formDataObject.append("url", formElements.url.value);
@@ -109,7 +117,7 @@ function FormStepOne() {
         <FormLabel sx={{ color: toggleTheme.text }}>
           Dirección URL Youtube
         </FormLabel>
-        <Input type="text" name="url" />
+        <Input type="text" name="url" color={errorUrl ? "primary" : "danger"} />
       </FormControl>
       <Box sx={{ mt: 2 }}>
         <ChoiceChipCheckbox

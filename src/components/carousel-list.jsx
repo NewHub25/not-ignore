@@ -71,7 +71,6 @@ export default function CarouselList({ content, layer, title: titleTech }) {
         {content.map(
           ({
             author,
-            // description,
             keywords,
             title,
             url,

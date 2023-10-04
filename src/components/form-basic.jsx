@@ -10,7 +10,7 @@ import {
   LinearProgress,
   Typography,
 } from "@mui/joy";
-import { AssignmentTurnedIn } from "@mui/icons-material";
+import { ArrowOutward, AssignmentTurnedIn } from "@mui/icons-material";
 import {
   Form,
   Link,
@@ -59,7 +59,10 @@ export const FormBasic = () => {
         gap: 2,
         alignItems: "center",
         "& > *:last-child": {
-          opacity: navigation.state === "loading" ? 0.5 : 1,
+          opacity:
+            navigation.state === "loading" || navigation.state === "submitting"
+              ? 0.5
+              : 1,
         },
       }}
     >
@@ -68,9 +71,15 @@ export const FormBasic = () => {
         <ErrorCheckboxContext.Provider
           value={[errorCheckbox, setErrorCheckboxes]}
         >
-          <Box component="article">
-            {navigation.state === "loading" && (
-              <LinearProgress color="primary" variant="solid" thickness={3} />
+          <Box component="article" sx={{ width: "90%" }}>
+            {(navigation.state === "loading" ||
+              navigation.state === "submitting") && (
+              <LinearProgress
+                color="primary"
+                variant="solid"
+                thickness={3}
+                sx={{ mb: 2 }}
+              />
             )}
             {setpsComponents[stepCount]}
           </Box>
@@ -105,6 +114,7 @@ function FormStepOne() {
           )
         ) {
           setErrorUrl(true);
+          return;
         }
         const formElements = event.currentTarget.elements;
         const formDataObject = new FormData();
@@ -117,7 +127,19 @@ function FormStepOne() {
         <FormLabel sx={{ color: toggleTheme.text }}>
           Dirección URL Youtube
         </FormLabel>
-        <Input type="text" name="url" color={errorUrl ? "primary" : "danger"} />
+        <Input type="text" name="url" color={errorUrl ? "danger" : "primary"} />
+        {errorUrl && (
+          <label
+            style={{
+              color: "#f33",
+              fontWeight: "bold",
+              fontSize: 15,
+              marginTop: 5,
+            }}
+          >
+            La dirección URL de Youtuve debe ser válida
+          </label>
+        )}
       </FormControl>
       <Box sx={{ mt: 2 }}>
         <ChoiceChipCheckbox
@@ -141,7 +163,11 @@ function FormStepOne() {
         }}
       >
         <Button type="submit">Continuar</Button>
-        <Button type="button" variant="soft">
+        <Button
+          type="button"
+          variant="soft"
+          endDecorator={<ArrowOutward fontSize="small" />}
+        >
           <Link
             to="newcategory"
             fontSize="sm"
@@ -163,7 +189,7 @@ function FormStepTwo() {
   return (
     <Form
       style={{
-        width: "min(400px, 90%)",
+        width: "100%",
       }}
       onSubmit={(event) => {
         event.preventDefault();

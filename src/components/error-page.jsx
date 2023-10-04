@@ -54,7 +54,6 @@ function ComponentToGrid() {
       <Typography variant="h1">404</Typography>
       <Typography variant="h6">
         La página que estás buscando no existe
-        {/* The page you’re looking for doesn’t exist. */}
       </Typography>
       <Button
         variant="contained"

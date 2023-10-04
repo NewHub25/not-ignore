@@ -19,6 +19,8 @@ export const languages_frameworks = [
   "Kotlin",
   "Laravel",
   "Meteor",
+  "MongoDB",
+  "MySQL",
   "Next.js",
   "Perl",
   "Redux",

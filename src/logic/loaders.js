@@ -60,6 +60,7 @@ export const actionNewCategory = async ({ request }) => {
   try {
     await fetchNewCategory(objTempData.data);
     const { data } = objTempData;
+    await loaderApp();
     return redirect(
       `/room/${extractVideoId(JSON.parse(data).content[0].url).idYouTube}`
     );

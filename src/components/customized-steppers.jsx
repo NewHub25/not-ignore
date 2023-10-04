@@ -101,9 +101,9 @@ ColorlibStepIcon.propTypes = {
 };
 
 const steps = [
-  "Agregando nuevo video",
-  "Añadiendo detalles del video y URL",
-  "Subamos el video",
+  "Añadiendo URL y categoria",
+  "Detalles del video",
+  "Subiendo el video",
 ];
 
 export default function CustomizedSteppers({ step }) {

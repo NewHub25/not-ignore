@@ -61,7 +61,11 @@ export default function Footer() {
       }}
     >
       <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-        {isOnline ? <Wifi fontSize="small" /> : <WifiOff fontSize="small" />}
+        {isOnline ? (
+          <Wifi fontSize="small" titleAccess="Estás conectado" />
+        ) : (
+          <WifiOff fontSize="Estás desconectado" />
+        )}
         <Divider orientation="vertical" />
         {[
           {

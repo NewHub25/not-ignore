@@ -1,8 +1,12 @@
 import { Divider } from "@mui/joy";
-import { useContext } from "react";
+import { memo, useContext } from "react";
 import { ThemeContext } from "styled-components";
 
-export const CustomDivider = ({ orientation, children, sx }) => {
+export const CustomDivider = memo(function CustomDivider({
+  orientation,
+  children,
+  sx,
+}) {
   const toggleTheme = useContext(ThemeContext);
 
   return (
@@ -11,11 +15,11 @@ export const CustomDivider = ({ orientation, children, sx }) => {
       sx={{
         "--Divider-lineColor": toggleTheme.text,
         // "--Divider-thickness": "2px",
-        m:0,
-        ...sx
+        m: 0,
+        ...sx,
       }}
     >
       {children}
     </Divider>
   );
-};
+});

@@ -4,8 +4,9 @@ import ListItem from "@mui/joy/ListItem";
 import Typography from "@mui/joy/Typography";
 import Sheet from "@mui/joy/Sheet";
 import Done from "@mui/icons-material/Done";
+import { memo } from "react";
 
-export default function ChoiceChipCheckbox({
+const ChoiceChipCheckbox = memo(function ChoiceChipCheckbox({
   optionsToCheck,
   valueCheckbox,
   setValueCheckbox,
@@ -79,4 +80,6 @@ export default function ChoiceChipCheckbox({
       )}{" "}
     </Sheet>
   );
-}
+});
+
+export default ChoiceChipCheckbox;

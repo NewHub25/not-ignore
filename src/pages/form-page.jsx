@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Outlet, useLoaderData } from "react-router-dom";
 import { useMediaQuery } from "@mui/material";
 import CardLayers3d from "../components/card-layers";
@@ -15,6 +15,17 @@ export const PageFormVideo = () => {
       }/maxresdefault.jpg`,
     }))
   );
+  const handleUnload = (event) => {
+    event.preventDefault();
+    return (event.returnValue = "");
+  };
+
+  useEffect(() => {
+    window.addEventListener("beforeunload", handleUnload);
+    return () => {
+      window.removeEventListener("beforeunload", handleUnload);
+    };
+  }, []);
 
   return (
     <section

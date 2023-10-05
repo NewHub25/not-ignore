@@ -9,7 +9,7 @@ import {
   Tooltip,
   Typography,
 } from "@mui/joy";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import extractVideoId from "../logic/extract-video-id";
 import { AccountBox, BarChart } from "@mui/icons-material";
 import { useMediaQuery } from "@mui/material";
@@ -35,6 +35,10 @@ export const VideoRoom = () => {
       return contentResult;
     })()
   );
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <Box

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { memo, useContext } from "react";
 import { ThemeContext } from "styled-components";
 import PropTypes from "prop-types";
 import { styled } from "@mui/material/styles";
@@ -106,7 +106,7 @@ const steps = [
   "Subiendo el video",
 ];
 
-export default function CustomizedSteppers({ step }) {
+const CustomizedSteppers = memo(function CustomizedSteppers({ step }) {
   const toggleTheme = useContext(ThemeContext);
 
   return (
@@ -132,4 +132,6 @@ export default function CustomizedSteppers({ step }) {
       </Stepper>
     </Stack>
   );
-}
+});
+
+export default CustomizedSteppers;

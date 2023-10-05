@@ -7,7 +7,6 @@ import { ThemeToggleProvider } from "./components/ThemeProvider.jsx";
 import { ErrorPage } from "./components/error-page.jsx";
 import { Index } from "./components/index.jsx";
 import { PageFormVideo } from "./pages/form-page.jsx";
-import { Technologies } from "./components/technology.jsx";
 import { PageRoutes } from "./pages/page-routes.jsx";
 import "./index.css";
 
@@ -59,10 +58,6 @@ const router = createBrowserRouter([
           {
             path: "pages/:pageId",
             element: <PageRoutes />,
-          },
-          {
-            path: "tech/:techId",
-            element: <Technologies />,
           },
           {
             path: "room/:roomId",

@@ -44,10 +44,10 @@ export const CarouselMedia = ({ images, sx }) => {
   return (
     <div
       style={{
-        width: "90dvw",
+        width: "98dvw",
         ...(matches
-          ? { height: "90vh", margin: "0 auto 3rem" }
-          : { height: "70vh", margin: "3rem auto" }),
+          ? { height: "calc(100vh - 5.5rem)", margin: ".5rem auto 3rem" }
+          : { height: "70vh", margin: ".5rem auto" }),
         position: "relative",
         overflow: "hidden",
         ...sx,

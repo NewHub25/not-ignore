@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import ResponsiveAppBar from "./components/app-bar";
+import ResponsiveAppBar from "./components/nav-app-bar";
 import Footer from "./components/footer";
 
 function App() {

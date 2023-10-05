@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { memo, useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   AppBar,
@@ -18,13 +18,10 @@ import { ThemeContext } from "styled-components";
 import { nameProject } from "../utils/names";
 import SwitchThumbChild from "./switch";
 
-const pages = [
-  { id: "categories", name: "categorías" },
-];
+const pages = [{ id: "categories", name: "categorías" }];
 const moreActions = ["Agregar nuevo video"];
 
 function ResponsiveAppBar() {
-  const toggleTheme = useContext(ThemeContext);
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -45,13 +42,32 @@ function ResponsiveAppBar() {
 
   return (
     <AppBar
+      component="nav"
       position="static"
       sx={{
         backgroundColor: "transparent",
-        boxShadow: `0px 1px 5px ${toggleTheme.text}`,
-        color: toggleTheme.principal,
-        height: "5rem",
+        color: "#eee",
         zIndex: 1000,
+        position: "sticky",
+        top: 0,
+        viewTimelineName: "--nav-app-bar",
+        viewTimelineAxis: "block",
+        animationTimeline: "--nav-app-bar",
+        animationName: "opacitySticky",
+        animationRange: "cover",
+        animationFillMode: "both",
+        "@keyframes opacitySticky": {
+          from: {
+            boxShadow: `0px 1px 5px #eee`,
+            backdropFilter: "blur(3px) brightness(90%)",
+            height: "5rem",
+          },
+          to: {
+            boxShadow: `0px 5px 5px #eee`,
+            backdropFilter: "blur(7px) brightness(0%)",
+            height: "3.5rem",
+          },
+        },
       }}
     >
       <Container maxWidth="xl">
@@ -65,7 +81,7 @@ function ResponsiveAppBar() {
             />
           </IconButton>
           <Link to="/">
-            <NameProjectComponent color={toggleTheme.text} xs="none" md="flex">
+            <NameProjectComponent xs="none" md="flex">
               {nameProject}
             </NameProjectComponent>
           </Link>
@@ -121,7 +137,7 @@ function ResponsiveAppBar() {
               sx={{ backgroundColor: "transparent" }}
             />
           </IconButton>
-          <NameProjectComponent color={toggleTheme.text} xs="flex" md="none">
+          <NameProjectComponent xs="flex" md="none">
             <Link to="/">{nameProject}</Link>
           </NameProjectComponent>
           <Box
@@ -131,7 +147,6 @@ function ResponsiveAppBar() {
               fontSize: "1.2rem",
               gap: "5rem",
               textTransform: "capitalize",
-              color: toggleTheme.text,
             }}
           >
             {pages.map(({ id, name }) => (
@@ -226,7 +241,12 @@ function ResponsiveAppBar() {
 }
 export default ResponsiveAppBar;
 
-const NameProjectComponent = ({ children, xs, md, color }) => {
+const NameProjectComponent = memo(function NameProjectComponent({
+  children,
+  xs,
+  md,
+  color,
+}) {
   return (
     <Typography
       variant="h5"
@@ -245,4 +265,4 @@ const NameProjectComponent = ({ children, xs, md, color }) => {
       {children}
     </Typography>
   );
-};
+});

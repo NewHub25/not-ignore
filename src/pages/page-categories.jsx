@@ -92,6 +92,7 @@ export const PageCategories = () => {
                         >
                           {titleVideo}
                           <Typography
+                            component="span"
                             sx={{
                               position: "absolute",
                               bottom: 0,

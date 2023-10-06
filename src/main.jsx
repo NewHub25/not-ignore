@@ -56,6 +56,7 @@ const router = createBrowserRouter([
             ],
           },
           {
+            loader: loaderIndex,
             path: "pages/:pageId",
             element: <PageRoutes />,
           },

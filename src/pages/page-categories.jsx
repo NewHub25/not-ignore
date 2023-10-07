@@ -77,17 +77,19 @@ export const PageCategories = () => {
                       <ListItem
                         key={titleVideo}
                         sx={{
-                          border: "1px dashed",
+                          border: "1px solid",
                           pl: 3,
+                          m: 0.5,
                         }}
                       >
                         <Typography
                           sx={{
                             fontSize: "1.1rem",
                             width: "80%",
-                            minHeight: "5rem",
+                            minHeight: "4rem",
                             position: "relative",
                             opacity: 0.8,
+                            pt: 1,
                           }}
                         >
                           {titleVideo}

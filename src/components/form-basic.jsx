@@ -28,6 +28,7 @@ import {
 } from "../contexts/form-context";
 import { deleteLocalFormVideo } from "../logic/local-storage";
 import { updateStoreOneVideoLocal } from "../logic/fetch";
+import { useSnackbar } from "notistack";
 
 const setpsComponents = {
   0: <FormStepOne />,
@@ -230,6 +231,7 @@ function FormStepTwo() {
 function EndForm() {
   const { CATEGORIES, storage } = useLoaderData();
   const submit = useSubmit();
+  const { enqueueSnackbar } = useSnackbar();
 
   return (
     <Form
@@ -278,6 +280,9 @@ function EndForm() {
         <Button
           type="submit"
           color="success"
+          onClick={() =>
+            enqueueSnackbar("Registro enviado", { variant: "info" })
+          }
           endDecorator={<AssignmentTurnedIn />}
         >
           Finalizar

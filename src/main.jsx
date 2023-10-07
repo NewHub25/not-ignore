@@ -20,6 +20,7 @@ import {
 import { VideoRoom } from "./components/video-room.jsx";
 import { FormBasic } from "./components/form-basic.jsx";
 import { FormNewCategory } from "./components/form-new-category.jsx";
+import { SnackbarProvider } from "notistack";
 
 const router = createBrowserRouter([
   {
@@ -74,7 +75,16 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ThemeToggleProvider>
-      <RouterProvider router={router} />
+      <SnackbarProvider
+        iconVariant={{
+          success: "✅",
+          error: "✖️",
+          warning: "⚠️",
+          info: "ℹ️",
+        }}
+      >
+        <RouterProvider router={router} />
+      </SnackbarProvider>
     </ThemeToggleProvider>
   </React.StrictMode>
 );

@@ -281,7 +281,7 @@ function EndForm() {
           type="submit"
           color="success"
           onClick={() =>
-            enqueueSnackbar("Registro enviado", { variant: "info" })
+            enqueueSnackbar("Registro enviado", { variant: "customInfo" })
           }
           endDecorator={<AssignmentTurnedIn />}
         >

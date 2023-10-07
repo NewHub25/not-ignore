@@ -23,7 +23,7 @@ export const actionNewVideo = async ({ request }) => {
     const storage = getLocalFormVideo();
     if (storage) objTempData = { ...storage, ...objTempData };
     saveLocalFormVideo(objTempData);
-    enqueueSnackbar("Datos guardados", { variant: "info" });
+    enqueueSnackbar("Datos guardados", { variant: "customInfo" });
     return redirect("./");
   }
   if (request.method === "PUT") {
@@ -40,7 +40,7 @@ export const actionNewVideo = async ({ request }) => {
       const json = await f.json();
       console.log({ json });
       await loaderApp();
-      enqueueSnackbar("¡Nuevo video agregado!", { variant: "success" });
+      enqueueSnackbar("¡Nuevo video agregado!", { variant: "customSuccess" });
       return redirect(`/room/${extractVideoId(url).idYouTube}`);
     } catch (error) {
       console.warn(error.message);
@@ -64,7 +64,7 @@ export const actionNewCategory = async ({ request }) => {
     await fetchNewCategory(objTempData.data);
     const { data } = objTempData;
     await loaderApp();
-    enqueueSnackbar("¡Nuevo categoría creada!", { variant: "success" });
+    enqueueSnackbar("¡Nuevo categoría creada!", { variant: "customSuccess" });
     return redirect(
       `/room/${extractVideoId(JSON.parse(data).content[0].url).idYouTube}`
     );

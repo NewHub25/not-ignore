@@ -21,6 +21,10 @@ import { VideoRoom } from "./components/video-room.jsx";
 import { FormBasic } from "./components/form-basic.jsx";
 import { FormNewCategory } from "./components/form-new-category.jsx";
 import { SnackbarProvider } from "notistack";
+import {
+  notificationInfo,
+  notificationSuccess,
+} from "./components/notifications.jsx";
 
 const router = createBrowserRouter([
   {
@@ -81,6 +85,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           error: "✖️",
           warning: "⚠️",
           info: "ℹ️",
+        }}
+        Components={{
+          customSuccess: notificationSuccess,
+          customInfo: notificationInfo,
         }}
       >
         <RouterProvider router={router} />

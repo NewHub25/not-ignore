@@ -1,4 +1,4 @@
-import { memo, useContext, useState } from "react";
+import { memo, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   AppBar,
@@ -13,7 +13,6 @@ import {
 } from "@mui/material";
 import { Avatar } from "@mui/joy";
 import { SettingsSuggest, Menu as MenuIcon } from "@mui/icons-material";
-import { ThemeContext } from "styled-components";
 
 import { nameProject } from "../utils/names";
 import SwitchThumbChild from "./switch";

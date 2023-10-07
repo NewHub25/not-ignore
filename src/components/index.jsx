@@ -8,6 +8,7 @@ import { Fab, Toolbar } from "@mui/material";
 import { KeyboardDoubleArrowUp } from "@mui/icons-material";
 import { ThemeContext } from "styled-components";
 import { useContext } from "react";
+import { FrequentlyQuestionedAnswers } from "./accordion-fqa";
 export const Index = () => {
   const CATEGORIES = useLoaderData();
   const toggleTheme = useContext(ThemeContext);
@@ -16,6 +17,7 @@ export const Index = () => {
     <>
       <Toolbar id="back-to-top-anchor" sx={{ position: "absolute" }} />
       <CarouselMedia images={ASSETS_IMG} />
+      <FrequentlyQuestionedAnswers />
       {CATEGORIES &&
         CATEGORIES.map(({ content, layer, title }) => {
           if (!content[0]?.url) return;

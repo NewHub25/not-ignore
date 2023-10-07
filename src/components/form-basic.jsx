@@ -164,20 +164,20 @@ function FormStepOne() {
         }}
       >
         <Button type="submit">Continuar</Button>
-        <Button
-          type="button"
-          variant="soft"
-          endDecorator={<ArrowOutward fontSize="small" />}
+        <Link
+          to="newcategory"
+          fontSize="sm"
+          href="#replace-with-a-link"
+          fontWeight="lg"
         >
-          <Link
-            to="newcategory"
-            fontSize="sm"
-            href="#replace-with-a-link"
-            fontWeight="lg"
+          <Button
+            type="button"
+            variant="soft"
+            endDecorator={<ArrowOutward fontSize="small" />}
           >
             Nueva categoría
-          </Link>
-        </Button>
+          </Button>
+        </Link>
       </Box>
     </Form>
   );

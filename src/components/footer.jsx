@@ -74,7 +74,7 @@ export default function Footer() {
           },
           { href: "https://github.com/NewHub25", decorator: <GitHub /> },
           {
-            href: "https://www.linkedin.com/in/terry-chagua-84a7a8252/",
+            href: "https://linkedin.com/in/terry-ildefonso-js",
             decorator: <LinkedIn />,
           },
           { href: "https://twitter.com/@TerrySmart25", decorator: <Twitter /> },

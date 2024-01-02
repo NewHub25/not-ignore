@@ -49,11 +49,9 @@ function ResponsiveAppBar() {
         zIndex: 1000,
         position: "sticky",
         top: 0,
-        viewTimelineName: "--nav-app-bar",
-        viewTimelineAxis: "block",
-        animationTimeline: "--nav-app-bar",
+        animationTimeline: "scroll(root y)",
         animationName: "opacitySticky",
-        animationRange: "cover",
+        animationRange: "0vh 50vh",
         animationFillMode: "both",
         "@keyframes opacitySticky": {
           from: {
